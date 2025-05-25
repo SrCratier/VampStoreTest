@@ -1,0 +1,205 @@
+:root {
+    --primary-bg: #0D0212;
+    --card-bg: #1A0B26;
+    --text-color: #E0E0E0;
+    --accent-color: #E000FF;
+    --price-color: #00E0C8;
+    --gothic-font: 'MedievalSharp', cursive;
+    --main-font: 'Roboto', sans-serif;
+    --accent-color-rgb: 224, 0, 255;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--main-font);
+    background-color: var(--primary-bg);
+    background-image: radial-gradient(circle at top left, rgba(74, 20, 140, 0.3), transparent 40%),
+                      radial-gradient(circle at bottom right, rgba(171, 71, 188, 0.2), transparent 50%);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar {
+    padding: 20px 40px;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.logo-container {
+    display: flex;
+    align-items: baseline;
+}
+
+.logo-v {
+    font-family: var(--gothic-font);
+    font-size: 3.5rem;
+    color: var(--accent-color);
+    margin-right: 5px;
+    line-height: 1;
+}
+
+.store-name {
+    font-family: var(--main-font);
+    font-weight: 700;
+    font-size: 2.2rem;
+    color: var(--text-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 30px;
+    flex-grow: 1;
+}
+
+.product-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: left;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(var(--accent-color-rgb), 0.3);
+}
+
+.product-card img {
+    max-width: 70%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    background-color: rgba(0,0,0,0.1);
+    align-self: center;
+}
+
+.product-card h3 {
+    font-size: 1.3em;
+    margin-bottom: 8px;
+    color: var(--text-color);
+    text-align: center;
+}
+
+.product-card .duration {
+    font-size: 1em;
+    color: #a0a0a0;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.initial-description {
+    font-size: 0.9em;
+    color: #b0b0b0;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.product-card .price {
+    font-size: 1.6em;
+    font-weight: 700;
+    color: var(--price-color);
+    margin-bottom: 15px; /* AJUSTADO: Reducido un poco el margen inferior ya que no está encima del botón */
+    text-align: center;
+    /* margin-top: auto; NO ES NECESARIO SI EL BOTÓN ESTÁ AL FINAL */
+}
+
+.features-list {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 15px;
+    font-size: 0.85em;
+    color: #c0c0c0;
+    /* margin-top: auto; NO ES NECESARIO SI EL BOTÓN ESTÁ AL FINAL */
+}
+
+.features-list li {
+    padding-left: 1.3em;
+    position: relative;
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+.features-list li::before {
+    content: '✦';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+    font-size: 0.9em;
+    top: 1px;
+}
+
+.add-to-cart-btn {
+    display: block;
+    background-color: var(--accent-color);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+    width: 80%;
+    margin: 10px auto 0;
+    margin-top: auto; /* ESTO EMPUJARÁ EL BOTÓN AL FINAL DE LA TARJETA FLEX */
+}
+
+.add-to-cart-btn:hover {
+    background-color: #c000d6;
+    transform: scale(1.05);
+}
+
+.add-to-cart-btn i {
+    margin-right: 0;
+}
+
+footer {
+    text-align: center;
+    padding: 25px 20px;
+    background-color: rgba(0,0,0,0.2);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin-top: auto;
+}
+
+.footer-btn {
+    display: inline-block;
+    margin: 0 15px;
+    padding: 12px;
+    background-color: transparent;
+    color: var(--text-color);
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 1.8em;
+    transition: color 0.3s ease, transform 0.3s ease;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border: 2px solid var(--text-color);
+}
+
+.footer-btn:hover {
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+    transform: translateY(-3px);
+}
