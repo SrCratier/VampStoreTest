@@ -1,0 +1,167 @@
+:root {
+    --primary-bg: #0D0212; /* Morado muy oscuro, casi negro */
+    --card-bg: #1A0B26; /* Morado oscuro para las tarjetas */
+    --text-color: #E0E0E0; /* Gris claro para texto general */
+    --accent-color: #E000FF; /* Magenta/Fucsia vibrante para acentos */
+    --price-color: #00E0C8; /* Teal para precios, buen contraste */
+    --gothic-font: 'MedievalSharp', cursive;
+    --main-font: 'Roboto', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--main-font);
+    background-color: var(--primary-bg);
+    background-image: radial-gradient(circle at top left, rgba(74, 20, 140, 0.3), transparent 40%),
+                      radial-gradient(circle at bottom right, rgba(171, 71, 188, 0.2), transparent 50%);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar {
+    padding: 20px 40px;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Alineado a la izquierda */
+}
+
+.logo-container {
+    display: flex;
+    align-items: baseline; /* Alinea la base de la V con el texto */
+}
+
+.logo-v {
+    font-family: var(--gothic-font);
+    font-size: 3.5rem; /* Tamaño aumentado para la V */
+    color: var(--accent-color);
+    margin-right: 5px; /* Espacio reducido entre V y "amp" */
+    line-height: 1; /* Ajuste para alinear mejor */
+}
+
+.store-name {
+    font-family: var(--main-font);
+    font-weight: 700;
+    font-size: 2.2rem; /* Tamaño aumentado para el nombre */
+    color: var(--text-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 30px;
+    flex-grow: 1; /* Para que el main ocupe el espacio disponible */
+}
+
+.product-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.product-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(var(--accent-color-rgb, 224, 0, 255), 0.3);
+}
+
+.product-card img {
+    max-width: 70%;
+    height: auto;
+    aspect-ratio: 1 / 1; /* Mantiene la imagen cuadrada si es necesario */
+    object-fit: contain; /* Asegura que toda la imagen sea visible */
+    margin-bottom: 15px;
+    border-radius: 8px;
+    background-color: rgba(0,0,0,0.1); /* Fondo sutil si la imagen tiene transparencia */
+}
+
+.product-card h3 {
+    font-size: 1.3em;
+    margin-bottom: 8px;
+    color: var(--text-color);
+}
+
+.product-card .duration {
+    font-size: 1em;
+    color: #a0a0a0;
+    margin-bottom: 12px;
+}
+
+.product-card .price {
+    font-size: 1.6em;
+    font-weight: 700;
+    color: var(--price-color);
+    margin-bottom: 20px;
+}
+
+.add-to-cart-btn {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 20px; /* Más redondeado */
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #c000d6; /* Un poco más oscuro al pasar el mouse */
+    transform: scale(1.05);
+}
+
+.add-to-cart-btn i {
+    margin-right: 0; /* Icono solo */
+}
+
+footer {
+    text-align: center;
+    padding: 25px 20px;
+    background-color: rgba(0,0,0,0.2);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin-top: auto; /* Empuja el footer al final */
+}
+
+.footer-btn {
+    display: inline-block;
+    margin: 0 15px;
+    padding: 12px;
+    background-color: transparent;
+    color: var(--text-color);
+    border-radius: 50%; /* Círculo */
+    text-decoration: none;
+    font-size: 1.8em; /* Tamaño del icono */
+    transition: color 0.3s ease, transform 0.3s ease;
+    width: 50px; /* Ancho y alto fijos para forma circular */
+    height: 50px;
+    line-height: 50px; /* Centrar icono verticalmente */
+    border: 2px solid var(--text-color);
+}
+
+.footer-btn:hover {
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+    transform: translateY(-3px);
+}
+
+/* Para definir --accent-color-rgb para el box-shadow en hover de product-card */
+:root {
+    /* ... otras variables ... */
+    --accent-color-rgb: 224, 0, 255; /* RGB de #E000FF */
+}
