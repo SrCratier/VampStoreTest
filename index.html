@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vamp Store - Spotify Premium</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Añadidos pesos 500 y 600 para el selector y tooltip -->
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="navbar">
@@ -16,15 +18,23 @@
                 <h1 class="store-name">amp Store</h1>
             </div>
         </a>
+        <!-- Selector de Moneda -->
+        <div class="currency-selector-container">
+            <i class="fas fa-coins currency-icon"></i>
+            <select id="currency-selector" aria-label="Seleccionar Moneda">
+                <!-- Las opciones se llenarán con JavaScript -->
+            </select>
+        </div>
     </header>
 
     <main class="product-grid">
+        <!-- Producto 1 -->
         <div class="product-card">
             <img src="images/spotify1.png" alt="Spotify Premium">
             <h3>Spotify Premium</h3>
             <p class="duration">1 Mes</p>
             <p class="initial-description">Spotify Premium por 30 Días.</p>
-            <p class="price">$2.00</p>
+            <p class="price" data-price-usd="2.00">$2.00</p>
             <ul class="features-list">
                 <li>Millones de canciones sin anuncios!</li>
                 <li>Sin APKs ni programas externos.</li>
@@ -37,12 +47,13 @@
             </a>
         </div>
 
+        <!-- Producto 2 -->
         <div class="product-card">
             <img src="images/spotify2.png" alt="Spotify Premium">
             <h3>Spotify Premium</h3>
             <p class="duration">2 Meses</p>
             <p class="initial-description">Spotify Premium por 60 Días.</p>
-            <p class="price">$3.50</p>
+            <p class="price" data-price-usd="3.50">$3.50</p>
             <ul class="features-list">
                 <li>Millones de canciones sin anuncios!</li>
                 <li>Sin APKs ni programas externos.</li>
@@ -55,12 +66,13 @@
             </a>
         </div>
 
+        <!-- Producto 3: Precio Corregido -->
         <div class="product-card">
             <img src="images/spotify3.png" alt="Spotify Premium">
             <h3>Spotify Premium</h3>
             <p class="duration">3 Meses</p>
             <p class="initial-description">Spotify Premium por 90 Días.</p>
-            <p class="price">$5.25</p>
+            <p class="price" data-price-usd="5.25">$5.25</p>
             <ul class="features-list">
                 <li>Millones de canciones sin anuncios!</li>
                 <li>Sin APKs ni programas externos.</li>
@@ -73,12 +85,13 @@
             </a>
         </div>
 
+        <!-- Producto 4 -->
         <div class="product-card">
             <img src="images/spotify4.png" alt="Spotify Premium">
             <h3>Spotify Premium</h3>
             <p class="duration">6 Meses</p>
             <p class="initial-description">Spotify Premium por 180 Días.</p>
-            <p class="price">$9.80</p>
+            <p class="price" data-price-usd="9.80">$9.80</p>
             <ul class="features-list">
                 <li>Millones de canciones sin anuncios!</li>
                 <li>Sin APKs ni programas externos.</li>
@@ -91,12 +104,13 @@
             </a>
         </div>
 
+        <!-- Producto 5 -->
         <div class="product-card">
             <img src="images/spotify1.png" alt="Spotify Premium">
             <h3>Spotify Premium</h3>
             <p class="duration">12 Meses</p>
             <p class="initial-description">Spotify Premium por 365 Días.</p>
-            <p class="price">$18.90</p>
+            <p class="price" data-price-usd="18.90">$18.90</p>
             <ul class="features-list">
                 <li>Millones de canciones sin anuncios!</li>
                 <li>Sin APKs ni programas externos.</li>
@@ -109,12 +123,13 @@
             </a>
         </div>
 
+        <!-- Producto 6 -->
         <div class="product-card">
             <img src="images/spotify2.png" alt="Spotify Premium">
-            <h3>Spotify Premium</h3>
+            <h3>Spotify Premium Familiar</h3>
             <p class="duration">12 Meses Familiar</p>
             <p class="initial-description">Spotify Premium Familiar por 365 Días.</p>
-            <p class="price">$37.80</p>
+            <p class="price" data-price-usd="37.80">$37.80</p>
             <ul class="features-list">
                 <li>Todo lo del Premium Individual para hasta 6 cuentas.</li>
                 <li>Millones de canciones sin anuncios!</li>
@@ -138,5 +153,77 @@
         </a>
     </footer>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const currencySelector = document.getElementById('currency-selector');
+        const productPrices = document.querySelectorAll('.product-card .price');
+
+        // Tasas de cambio y símbolos actualizados
+        const exchangeRates = {
+            USD: { rate: 1, symbol: '$', code: 'USD', name: 'Dólar USA' },
+            PEN: { rate: 3.65, symbol: 'S/', code: 'PEN', name: 'Sol Peruano' },
+            // Símbolos actualizados para MXN, ARS, COP
+            MXN: { rate: 19.24, symbol: 'MXN ', code: 'MXN', name: 'Peso Mexicano' }, // Símbolo cambiado
+            ARS: { rate: 1134.36, symbol: 'ARS ', code: 'ARS', name: 'Peso Argentino' }, // Símbolo cambiado
+            COP: { rate: 4170.12, symbol: 'COP ', code: 'COP', name: 'Peso Colombiano' }, // Símbolo cambiado
+            ECU: { rate: 1, symbol: '$', code: 'USD', name: 'Dólar (Ecuador)' },
+            VES: { rate: 94.95, symbol: 'Bs.', code: 'VES', name: 'Bolívar Vzlano.' }
+        };
+
+        const currencyOrder = ['USD', 'PEN', 'MXN', 'ARS', 'COP', 'ECU', 'VES'];
+
+        currencyOrder.forEach(currencyCode => {
+            if (exchangeRates[currencyCode]) {
+                const option = document.createElement('option');
+                option.value = currencyCode;
+                // Ajuste para el texto de la opción si el símbolo ya es el código de moneda
+                let optionText = `${exchangeRates[currencyCode].name} (${exchangeRates[currencyCode].symbol.trim()})`;
+                if (['MXN', 'ARS', 'COP'].includes(currencyCode)) {
+                    optionText = `${exchangeRates[currencyCode].name}`; // No duplicar el código de moneda
+                }
+                option.textContent = optionText;
+
+                if (currencyCode === 'USD') {
+                    option.selected = true;
+                }
+                currencySelector.appendChild(option);
+            }
+        });
+
+        function updatePrices() {
+            const selectedCurrency = currencySelector.value;
+            if (!exchangeRates[selectedCurrency]) return; 
+
+            const targetRate = exchangeRates[selectedCurrency].rate;
+            const targetSymbol = exchangeRates[selectedCurrency].symbol;
+
+            productPrices.forEach(priceElement => {
+                const priceUSDString = priceElement.getAttribute('data-price-usd');
+                if (priceUSDString) {
+                    const priceUSD = parseFloat(priceUSDString);
+                    if (!isNaN(priceUSD)) {
+                        let convertedPrice = priceUSD * targetRate;
+                        
+                        // Nuevo redondeo: redondear hacia abajo al primer decimal (X.Y0)
+                        // Multiplica por 10, redondea hacia abajo, luego divide por 10
+                        convertedPrice = Math.floor(convertedPrice * 10) / 10;
+                        
+                        // Asegurar siempre dos decimales para la visualización (e.g., 2.30)
+                        let formattedPrice = convertedPrice.toFixed(2);
+                        
+                        priceElement.textContent = `${targetSymbol}${formattedPrice}`;
+                    }
+                }
+            });
+        }
+
+        if (currencySelector) { 
+            currencySelector.addEventListener('change', updatePrices);
+            updatePrices(); 
+        } else {
+            console.error("Elemento #currency-selector no encontrado.");
+        }
+    });
+</script>
 </body>
 </html>
