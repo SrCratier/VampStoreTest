@@ -34,7 +34,8 @@ body {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between; /* Para espaciar logo y selector */
+    position: relative; /* Para el tooltip del selector de moneda */
 }
 
 .logo-link {
@@ -72,6 +73,87 @@ body {
     transition: opacity 0.3s ease;
 }
 
+/* Estilos para el selector de moneda */
+.currency-selector-container {
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 8px 15px;
+    border-radius: 25px; /* Más redondeado */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease; /* Transición suave para hover */
+}
+
+.currency-selector-container:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 15px rgba(var(--accent-color-rgb), 0.3);
+}
+
+.currency-icon {
+    color: var(--accent-color);
+    margin-right: 10px;
+    font-size: 1.3em; /* Icono un poco más grande */
+    transition: transform 0.3s ease;
+}
+
+.currency-selector-container:hover .currency-icon {
+    transform: scale(1.1) rotate(-10deg);
+}
+
+#currency-selector {
+    background-color: transparent;
+    color: var(--text-color);
+    border: none;
+    font-family: var(--main-font);
+    font-size: 1em; /* Tamaño de fuente del selector */
+    font-weight: 500;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+    -webkit-appearance: none; /* Quitar estilos por defecto en Safari/Chrome */
+    -moz-appearance: none; /* Quitar estilos por defecto en Firefox */
+    appearance: none; /* Quitar estilos por defecto */
+    padding-right: 20px; /* Espacio para el pseudo-elemento de flecha */
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23E0E0E0" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 5px center;
+    background-size: 18px;
+}
+
+#currency-selector option {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    font-weight: 400;
+}
+
+/* Tooltip para el selector de moneda */
+.currency-selector-container::before {
+    content: 'Cambiar Moneda';
+    position: absolute;
+    bottom: -30px; 
+    right: 20px; /* Alineado con el selector */
+    background-color: var(--accent-color);
+    color: #0D0212; /* Texto oscuro para contraste */
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-size: 0.8em;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+    transform: translateY(5px);
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.currency-selector-container:hover::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
 .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -84,7 +166,7 @@ body {
     background-color: var(--card-bg);
     border-radius: 12px;
     padding: 20px;
-    text-align: left;
+    text-align: left; /* Mantenido de tu nuevo CSS */
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -98,7 +180,7 @@ body {
 }
 
 .product-card img {
-    max-width: 70%;
+    max-width: 70%; /* Mantenido, puedes ajustar si es necesario */
     height: auto;
     aspect-ratio: 1 / 1;
     object-fit: contain;
@@ -122,7 +204,7 @@ body {
     text-align: center;
 }
 
-.initial-description {
+.initial-description { /* Tus estilos para la descripción */
     font-size: 0.9em;
     color: #b0b0b0;
     margin-bottom: 10px;
@@ -137,12 +219,13 @@ body {
     text-align: center;
 }
 
-.features-list {
+.features-list { /* Tus estilos para la lista de características */
     list-style: none;
     padding-left: 0;
     margin-bottom: 15px;
     font-size: 0.85em;
     color: #c0c0c0;
+    flex-grow: 1; /* Para que ocupe espacio y empuje el botón si es necesario */
 }
 
 .features-list li {
@@ -158,10 +241,10 @@ body {
     left: 0;
     color: var(--accent-color);
     font-size: 0.9em;
-    top: 1px;
+    top: 1px; /* Ajusta si es necesario para alinear la viñeta */
 }
 
-.add-to-cart-btn {
+.add-to-cart-btn { /* Tus estilos para el botón */
     display: block;
     background-color: var(--accent-color);
     color: #fff;
@@ -169,23 +252,25 @@ body {
     border-radius: 20px;
     text-decoration: none;
     font-size: 1.1em;
+    font-weight: 600;
     transition: background-color 0.3s ease, transform 0.2s ease;
     text-align: center;
-    width: 80%;
-    margin: 10px auto 0;
-    margin-top: auto;
+    width: 80%; /* Mantenido */
+    margin: 10px auto 0; /* Mantenido */
+    margin-top: auto; /* Asegura que el botón se quede abajo */
 }
 
 .add-to-cart-btn:hover {
     background-color: #c000d6;
     transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(var(--accent-color-rgb), 0.4);
 }
 
 .add-to-cart-btn i {
-    margin-right: 0;
+    margin-right: 0; /* Para que el icono quede solo */
 }
 
-footer {
+footer { /* Tus estilos para el footer */
     text-align: center;
     padding: 30px 20px;
     background-color: rgba(0,0,0,0.2);
@@ -194,21 +279,88 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 40px;
+    gap: 40px; /* Mantenido */
 }
 
-.footer-icon-link {
-    display: inline-flex; /* Mantenemos para que el icono se comporte bien */
+.footer-icon-link { /* Tus estilos para los iconos del footer */
+    display: inline-flex;
     align-items: center;
     text-decoration: none;
     color: var(--text-color);
-    font-size: 2.2em; /* Aumentado un poco el tamaño del icono ya que está solo */
+    font-size: 2.2em;
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
-/* ELIMINADO: .footer-star */
-
 .footer-icon-link:hover {
     color: var(--accent-color);
-    transform: translateY(-3px) scale(1.1); /* Añadido un ligero scale para más feedback */
+    transform: translateY(-3px) scale(1.1);
+}
+
+/* Media query para mejorar visualización en pantallas pequeñas */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px 20px;
+        flex-direction: column; /* Apilar logo y selector en móviles */
+        gap: 15px; /* Espacio entre logo y selector */
+    }
+
+    .logo-v {
+        font-size: 3rem;
+    }
+    .store-name {
+        font-size: 1.8rem;
+    }
+
+    .currency-selector-container::before { /* Esconder tooltip en móviles para no estorbar */
+        display: none;
+    }
+
+    .product-grid {
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .product-card h3 {
+        font-size: 1.2em;
+    }
+    .product-card .price {
+        font-size: 1.5em;
+    }
+    .add-to-cart-btn {
+        font-size: 1em;
+        padding: 9px 16px;
+        width: 90%; /* Ajustar ancho en móviles si es necesario */
+    }
+    .features-list {
+        font-size: 0.8em;
+    }
+    .initial-description {
+        font-size: 0.85em;
+    }
+    footer {
+        padding: 20px 15px;
+        gap: 30px;
+    }
+    .footer-icon-link {
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-container {
+        align-items: center; 
+        text-align: center; 
+    }
+    .logo-v {
+        font-size: 2.5rem;
+    }
+    .store-name {
+        font-size: 1.5rem;
+    }
+    #currency-selector {
+        font-size: 0.9em;
+    }
+    .product-card {
+        padding: 15px;
+    }
 }
