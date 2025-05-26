@@ -23,12 +23,15 @@
             <button class="filter-btn" data-filter="netflix"><i class="fas fa-tv"></i> Netflix</button>
             <button class="filter-btn" data-filter="crunchyroll"><i class="fas fa-bolt"></i> Crunchyroll</button>
         </nav>
+        <!-- Botón de CIERRE DENTRO de la Sidebar -->
         <button id="sidebar-close-btn" class="sidebar-toggle-btn sidebar-close-btn" aria-label="Cerrar filtros">
             <i class="fas fa-chevron-left"></i> <span>Cerrar Filtros</span>
         </button>
     </aside>
 
+    <!-- Contenedor principal que se desplazará -->
     <div class="main-content-wrapper" id="main-content-wrapper">
+        <!-- Botón de ABRIR FUERA de la Sidebar, DENTRO del wrapper -->
         <button id="sidebar-open-btn" class="sidebar-open-btn" aria-label="Abrir filtros">
             <i class="fas fa-filter"></i> <span>Filtros</span>
         </button>
@@ -43,6 +46,7 @@
             <div class="currency-selector-container">
                 <i class="fas fa-coins currency-icon"></i>
                 <select id="currency-selector" aria-label="Seleccionar Moneda">
+                    <!-- Opciones llenadas con JS -->
                 </select>
             </div>
         </header>
@@ -97,9 +101,6 @@
     </div> <!-- Fin de .main-content-wrapper -->
 
 <script>
-    // Tu script JS existente va aquí, sin cambios en esta etapa,
-    // solo verificaremos si alguna parte del script depende del botón de toggle
-    // que hemos movido/renombrado.
     document.addEventListener('DOMContentLoaded', function () {
         const currencySelector = document.getElementById('currency-selector');
         const productPrices = document.querySelectorAll('.product-card .price');
@@ -184,10 +185,7 @@
         if(sidebarCloseBtn) sidebarCloseBtn.addEventListener('click', () => toggleSidebar(false));
         
         const savedSidebarState = localStorage.getItem('sidebarState');
-        // Decidimos si abrir o no basado en el estado guardado.
-        // Si quieres que se abra siempre la primera vez, descomenta la siguiente línea y comenta la de abajo.
-        // if (savedSidebarState === null || savedSidebarState === 'open') {
-        if (savedSidebarState === 'open') { 
+        if (savedSidebarState === null || savedSidebarState === 'open') { // Se abre si es la primera vez o si estaba abierta
              setTimeout(() => { toggleSidebar(true); }, 250);
         } else { 
             toggleSidebar(false); 
