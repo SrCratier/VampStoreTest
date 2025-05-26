@@ -3,252 +3,202 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vamp Store - Spotify Premium</title>
+    <title>Vamp Store - Cuentas Premium</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="navbar">
-        <a href="https://vampclub.shop/" target="_blank" rel="noopener noreferrer" class="logo-link">
-            <div class="logo-container">
-                <span class="logo-v">V</span>
-                <h1 class="store-name">amp Store</h1>
-            </div>
-        </a>
-        <div class="currency-selector-container">
-            <i class="fas fa-coins currency-icon"></i>
-            <select id="currency-selector" aria-label="Seleccionar Moneda">
-                <!-- Opciones llenadas con JS -->
-            </select>
+    <!-- Menú lateral de filtros -->
+    <aside id="filter-sidebar" class="filter-sidebar" aria-labelledby="filter-sidebar-heading">
+        <div class="filter-sidebar-header">
+            <h2 id="filter-sidebar-heading">Filtrar Servicios</h2>
         </div>
-    </header>
+        <nav class="filter-nav">
+            <button class="filter-btn" data-filter="all"><i class="fas fa-asterisk"></i> Todos</button>
+            <button class="filter-btn" data-filter="spotify"><i class="fab fa-spotify"></i> Spotify</button>
+            <button class="filter-btn" data-filter="disney"><i class="fas fa-magic"></i> Disney+</button>
+            <button class="filter-btn" data-filter="hbo"><i class="fas fa-film"></i> HBO Max</button>
+            <button class="filter-btn" data-filter="primevideo"><i class="fab fa-amazon"></i> Prime Video</button>
+            <button class="filter-btn" data-filter="netflix"><i class="fas fa-tv"></i> Netflix</button>
+            <button class="filter-btn" data-filter="crunchyroll"><i class="fas fa-bolt"></i> Crunchyroll</button>
+        </nav>
+        <button id="sidebar-close-btn" class="sidebar-toggle-btn sidebar-close-btn" aria-label="Cerrar filtros">
+            <i class="fas fa-chevron-left"></i> <span>Cerrar Filtros</span>
+        </button>
+    </aside>
 
-    <main class="product-grid">
-        <!-- Producto 1 -->
-        <div class="product-card">
-            <img src="images/spotify1.png" alt="Spotify Premium">
-            <h3>Spotify Premium</h3>
-            <p class="duration">1 Mes</p>
-            <p class="initial-description">Spotify Premium por 30 Días.</p>
-            <p class="price" data-price-usd="2.00">$2.00</p>
-            <ul class="features-list">
-                <li>Millones de canciones sin anuncios!</li>
-                <li>Sin APKs ni programas externos.</li>
-                <li>Descarga y escucha música sin conexión.</li>
-                <li>Reproducción mejorada para una mejor inmersión.</li>
-                <li>Garantía por 30 Días.</li>
-            </ul>
-            <div class="product-card-actions">
-                <a href="https://discord.gg/q9EceVXxGg" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito">
-                    <i class="fas fa-shopping-cart"></i>
-                </a>
-                <a href="https://www.paypal.com/ncp/payment/9G2X4VBUGW62S" target="_blank" rel="noopener noreferrer" class="paypal-btn" aria-label="Pagar con PayPal">
-                    <i class="fab fa-paypal"></i>
-                </a>
+    <div class="main-content-wrapper" id="main-content-wrapper">
+        <button id="sidebar-open-btn" class="sidebar-open-btn" aria-label="Abrir filtros">
+            <i class="fas fa-filter"></i> <span>Filtros</span>
+        </button>
+
+        <header class="navbar">
+            <a href="https://vampclub.shop/" target="_blank" rel="noopener noreferrer" class="logo-link">
+                <div class="logo-container">
+                    <span class="logo-v">V</span>
+                    <h1 class="store-name">amp Store</h1>
+                </div>
+            </a>
+            <div class="currency-selector-container">
+                <i class="fas fa-coins currency-icon"></i>
+                <select id="currency-selector" aria-label="Seleccionar Moneda">
+                </select>
             </div>
-        </div>
+        </header>
 
-        <!-- Producto 2 -->
-        <div class="product-card">
-            <img src="images/spotify2.png" alt="Spotify Premium">
-            <h3>Spotify Premium</h3>
-            <p class="duration">2 Meses</p>
-            <p class="initial-description">Spotify Premium por 60 Días.</p>
-            <p class="price" data-price-usd="3.50">$3.50</p>
-            <ul class="features-list">
-                <li>Millones de canciones sin anuncios!</li>
-                <li>Sin APKs ni programas externos.</li>
-                <li>Descarga y escucha música sin conexión.</li>
-                <li>Reproducción mejorada para una mejor inmersión.</li>
-                <li>Garantía por 60 Días.</li>
-            </ul>
-            <div class="product-card-actions">
-                <a href="https://discord.gg/q9EceVXxGg" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito">
-                    <i class="fas fa-shopping-cart"></i>
-                </a>
-                <a href="https://www.paypal.com/ncp/payment/33PWTYTE9AW5E" target="_blank" rel="noopener noreferrer" class="paypal-btn" aria-label="Pagar con PayPal">
-                    <i class="fab fa-paypal"></i>
-                </a>
-            </div>
-        </div>
+        <main class="product-grid">
+            <!-- PRODUCTOS SPOTIFY -->
+            <div class="product-card" data-category="spotify"> <img src="images/spotify1.png" alt="Spotify Premium"> <h3>Spotify Premium</h3> <p class="duration">1 Mes</p> <p class="initial-description">Spotify Premium por 30 Días.</p> <p class="price" data-price-usd="2.00">$2.00</p> <ul class="features-list"><li>Millones de canciones sin anuncios!</li><li>Sin APKs ni programas externos.</li><li>Descarga y escucha música sin conexión.</li><li>Reproducción mejorada para una mejor inmersión.</li><li>Garantía por 30 Días.</li></ul> <div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a><a href="https://www.paypal.com/ncp/payment/9G2X4VBUGW62S" target="_blank" rel="noopener noreferrer" class="paypal-btn" aria-label="Pagar con PayPal"><i class="fab fa-paypal"></i></a></div> </div>
+            <div class="product-card" data-category="spotify"> <img src="images/spotify2.png" alt="Spotify Premium"> <h3>Spotify Premium</h3> <p class="duration">2 Meses</p> <p class="initial-description">Spotify Premium por 60 Días.</p> <p class="price" data-price-usd="3.50">$3.50</p> <ul class="features-list"><li>Millones de canciones sin anuncios!</li><li>Sin APKs ni programas externos.</li><li>Descarga y escucha música sin conexión.</li><li>Reproducción mejorada para una mejor inmersión.</li><li>Garantía por 60 Días.</li></ul> <div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a><a href="https://www.paypal.com/ncp/payment/33PWTYTE9AW5E" target="_blank" rel="noopener noreferrer" class="paypal-btn" aria-label="Pagar con PayPal"><i class="fab fa-paypal"></i></a></div> </div>
+            <div class="product-card" data-category="spotify"> <img src="images/spotify3.png" alt="Spotify Premium"> <h3>Spotify Premium</h3> <p class="duration">3 Meses</p> <p class="initial-description">Spotify Premium por 90 Días.</p> <p class="price" data-price-usd="5.25">$5.25</p> <ul class="features-list"><li>Millones de canciones sin anuncios!</li><li>Sin APKs ni programas externos.</li><li>Descarga y escucha música sin conexión.</li><li>Activación vía login, segura, rápida y totalmente personal.</li><li>Garantía por 90 Días.</li></ul> <div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a><a href="https://www.paypal.com/ncp/payment/X435J8L4J92Q2" target="_blank" rel="noopener noreferrer" class="paypal-btn" aria-label="Pagar con PayPal"><i class="fab fa-paypal"></i></a></div> </div>
+            <div class="product-card" data-category="spotify"> <img src="images/spotify4.png" alt="Spotify Premium"> <h3>Spotify Premium</h3> <p class="duration">6 Meses</p> <p class="initial-description">Spotify Premium por 180 Días.</p> <p class="price" data-price-usd="9.80">$9.80</p> <ul class="features-list"><li>Millones de canciones sin anuncios!</li><li>Sin APKs ni programas externos.</li><li>Descarga y escucha música sin conexión.</li><li>Activación vía login, segura, rápida y totalmente personal.</li><li>Garantía por 180 Días.</li></ul> <div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a><a href="https://www.paypal.com/ncp/payment/YTW49RHJUZQBJ" target="_blank" rel="noopener noreferrer" class="paypal-btn" aria-label="Pagar con PayPal"><i class="fab fa-paypal"></i></a></div> </div>
+            <div class="product-card" data-category="spotify"> <img src="images/spotify1.png" alt="Spotify Premium"> <h3>Spotify Premium</h3> <p class="duration">12 Meses</p> <p class="initial-description">Spotify Premium por 365 Días.</p> <p class="price" data-price-usd="18.90">$18.90</p> <ul class="features-list"><li>Millones de canciones sin anuncios!</li><li>Sin APKs ni programas externos.</li><li>Descarga y escucha música sin conexión.</li><li>Activación vía login, segura, rápida y totalmente personal.</li><li>Garantía por 365 Días.</li></ul> <div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a><a href="https://www.paypal.com/ncp/payment/3L4FRRXU6WVZ8" target="_blank" rel="noopener noreferrer" class="paypal-btn" aria-label="Pagar con PayPal"><i class="fab fa-paypal"></i></a></div> </div>
+            <div class="product-card" data-category="spotify"> <img src="images/spotify2.png" alt="Spotify Premium Familiar"> <h3>Spotify Premium Familiar</h3> <p class="duration">12 Meses Familiar</p> <p class="initial-description">Spotify Premium Familiar por 365 Días.</p> <p class="price" data-price-usd="37.80">$37.80</p> <ul class="features-list"><li>Todo lo del Premium Individual para hasta 6 cuentas.</li><li>Millones de canciones sin anuncios!</li><li>Sin APKs ni programas externos.</li><li>Descarga y escucha música sin conexión.</li><li>Reproducción mejorada para una mejor inmersión.</li><li>Garantía por 365 Días.</li></ul> <div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a><a href="https://www.paypal.com/ncp/payment/KACWZREB62RMC" target="_blank" rel="noopener noreferrer" class="paypal-btn" aria-label="Pagar con PayPal"><i class="fab fa-paypal"></i></a></div> </div>
 
-        <!-- Producto 3 -->
-        <div class="product-card">
-            <img src="images/spotify3.png" alt="Spotify Premium">
-            <h3>Spotify Premium</h3>
-            <p class="duration">3 Meses</p>
-            <p class="initial-description">Spotify Premium por 90 Días.</p>
-            <p class="price" data-price-usd="5.25">$5.25</p> <!-- Precio original sin redondeo especial en USD -->
-            <ul class="features-list">
-                <li>Millones de canciones sin anuncios!</li>
-                <li>Sin APKs ni programas externos.</li>
-                <li>Descarga y escucha música sin conexión.</li>
-                <li>Activación vía login, segura, rápida y totalmente personal.</li>
-                <li>Garantía por 90 Días.</li>
-            </ul>
-            <div class="product-card-actions">
-                <a href="https://discord.gg/q9EceVXxGg" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito">
-                    <i class="fas fa-shopping-cart"></i>
-                </a>
-                <a href="https://www.paypal.com/ncp/payment/X435J8L4J92Q2" target="_blank" rel="noopener noreferrer" class="paypal-btn" aria-label="Pagar con PayPal">
-                    <i class="fab fa-paypal"></i>
-                </a>
-            </div>
-        </div>
+            <!-- PRODUCTOS DISNEY -->
+            <div class="product-card" data-category="disney"><img src="images/disney1.png" alt="Disney+"><h3>Disney+</h3><p class="duration">12 Meses Cuenta Completa</p><p class="initial-description">Todos los perfiles disponibles.</p><p class="price" data-price-usd="14.00">$14.00</p><ul class="features-list"><li>Cuenta completa con todos los perfiles disponibles.</li><li>Con garantía.</li></ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
+            <div class="product-card" data-category="disney"><img src="images/disney1.png" alt="Disney+ Perfil"><h3>Disney+</h3><p class="duration">12 Meses Perfil</p><p class="initial-description">Perfil privado con PIN.</p><p class="price" data-price-usd="4.00">$4.00</p><ul class="features-list"><li>Perfil privado con PIN personal.</li><li>Con garantía.</li></ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
+            <div class="product-card" data-category="disney"><img src="images/disney1.png" alt="Disney+"><h3>Disney+</h3><p class="duration">3 Meses Cuenta Completa</p><p class="initial-description">Todos los perfiles disponibles.</p><p class="price" data-price-usd="7.75">$7.75</p><ul class="features-list"><li>Cuenta completa con todos los perfiles disponibles.</li><li>Con garantía.</li></ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
+            <div class="product-card" data-category="disney"><img src="images/disney1.png" alt="Disney+ Perfil"><h3>Disney+</h3><p class="duration">3 Meses Perfil</p><p class="initial-description">Perfil privado con PIN.</p><p class="price" data-price-usd="2.00">$2.00</p><ul class="features-list"><li>Perfil privado con PIN personal.</li><li>Con garantía.</li></ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
 
-        <!-- Producto 4 -->
-        <div class="product-card">
-            <img src="images/spotify4.png" alt="Spotify Premium">
-            <h3>Spotify Premium</h3>
-            <p class="duration">6 Meses</p>
-            <p class="initial-description">Spotify Premium por 180 Días.</p>
-            <p class="price" data-price-usd="9.80">$9.80</p>
-            <ul class="features-list">
-                <li>Millones de canciones sin anuncios!</li>
-                <li>Sin APKs ni programas externos.</li>
-                <li>Descarga y escucha música sin conexión.</li>
-                <li>Activación vía login, segura, rápida y totalmente personal.</li>
-                <li>Garantía por 180 Días.</li>
-            </ul>
-            <div class="product-card-actions">
-                <a href="https://discord.gg/q9EceVXxGg" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito">
-                    <i class="fas fa-shopping-cart"></i>
-                </a>
-                <a href="https://www.paypal.com/ncp/payment/YTW49RHJUZQBJ" target="_blank" rel="noopener noreferrer" class="paypal-btn" aria-label="Pagar con PayPal">
-                    <i class="fab fa-paypal"></i>
-                </a>
-            </div>
-        </div>
+            <!-- PRODUCTOS HBO MAX -->
+            <div class="product-card" data-category="hbo"><img src="images/hbo1.png" alt="HBO Max"><h3>HBO Max</h3><p class="duration">12 Meses Cuenta Completa</p><p class="initial-description">Todos los perfiles disponibles.</p><p class="price" data-price-usd="10.00">$10.00</p><ul class="features-list"><li>Cuenta completa con todos los perfiles disponibles.</li><li>Con garantía.</li></ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
+            <div class="product-card" data-category="hbo"><img src="images/hbo1.png" alt="HBO Max Perfil"><h3>HBO Max</h3><p class="duration">12 Meses Perfil</p><p class="initial-description">Perfil privado con PIN.</p><p class="price" data-price-usd="4.00">$4.00</p><ul class="features-list"><li>Perfil privado con PIN personal.</li><li>Con garantía.</li></ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
+            
+            <!-- PRODUCTOS PRIME VIDEO -->
+            <div class="product-card" data-category="primevideo"><img src="images/primevideo1.png" alt="Prime Video"><h3>Prime Video</h3><p class="duration">12 Meses Cuenta Completa</p><p class="initial-description">Todos los perfiles disponibles.</p><p class="price" data-price-usd="8.00">$8.00</p><ul class="features-list"><li>Cuenta completa con todos los perfiles disponibles.</li><li>Con garantía.</li></ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
+            <div class="product-card" data-category="primevideo"><img src="images/primevideo1.png" alt="Prime Video Perfil"><h3>Prime Video</h3><p class="duration">12 Meses Perfil</p><p class="initial-description">Perfil privado con PIN.</p><p class="price" data-price-usd="4.00">$4.00</p><ul class="features-list"><li>Perfil privado con PIN personal.</li><li>Con garantía.</li></ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
+            <div class="product-card" data-category="primevideo"><img src="images/primevideo1.png" alt="Prime Video"><h3>Prime Video</h3><p class="duration">6 Meses Cuenta Completa</p><p class="initial-description">Todos los perfiles disponibles.</p><p class="price" data-price-usd="5.75">$5.75</p><ul class="features-list"><li>Cuenta completa con todos los perfiles disponibles.</li><li>Con garantía.</li></ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
+            <div class="product-card" data-category="primevideo"><img src="images/primevideo1.png" alt="Prime Video"><h3>Prime Video</h3><p class="duration">3 Meses Cuenta Completa</p><p class="initial-description">Todos los perfiles disponibles.</p><p class="price" data-price-usd="3.75">$3.75</p><ul class="features-list"><li>Cuenta completa con todos los perfiles disponibles.</li><li>Con garantía.</li></ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
+            <div class="product-card" data-category="primevideo"><img src="images/primevideo1.png" alt="Prime Video"><h3>Prime Video</h3><p class="duration">1 Mes Cuenta Completa</p><p class="initial-description">Todos los perfiles disponibles.</p><p class="price" data-price-usd="2.00">$2.00</p><ul class="features-list"><li>Cuenta completa con todos los perfiles disponibles.</li><li>Con garantía.</li></ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
 
-        <!-- Producto 5 -->
-        <div class="product-card">
-            <img src="images/spotify1.png" alt="Spotify Premium">
-            <h3>Spotify Premium</h3>
-            <p class="duration">12 Meses</p>
-            <p class="initial-description">Spotify Premium por 365 Días.</p>
-            <p class="price" data-price-usd="18.90">$18.90</p>
-            <ul class="features-list">
-                <li>Millones de canciones sin anuncios!</li>
-                <li>Sin APKs ni programas externos.</li>
-                <li>Descarga y escucha música sin conexión.</li>
-                <li>Activación vía login, segura, rápida y totalmente personal.</li>
-                <li>Garantía por 365 Días.</li>
-            </ul>
-            <div class="product-card-actions">
-                <a href="https://discord.gg/q9EceVXxGg" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito">
-                    <i class="fas fa-shopping-cart"></i>
-                </a>
-                <a href="https://www.paypal.com/ncp/payment/3L4FRRXU6WVZ8" target="_blank" rel="noopener noreferrer" class="paypal-btn" aria-label="Pagar con PayPal">
-                    <i class="fab fa-paypal"></i>
-                </a>
-            </div>
-        </div>
+            <!-- PRODUCTOS NETFLIX -->
+            <div class="product-card" data-category="netflix"><img src="images/netflix1.png" alt="Netflix"><h3>Netflix</h3><p class="duration">1 Mes Cuenta Completa</p><p class="initial-description">Todos los perfiles disponibles.</p><p class="price" data-price-usd="6.00">$6.00</p><ul class="features-list"><li>Cuenta completa con todos los perfiles disponibles.</li><li>Con garantía.</li></ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
+            <div class="product-card" data-category="netflix"><img src="images/netflix1.png" alt="Netflix Perfil"><h3>Netflix</h3><p class="duration">1 Mes Perfil</p><p class="initial-description">Perfil privado con PIN.</p><p class="price" data-price-usd="2.00">$2.00</p><ul class="features-list"><li>Perfil privado con PIN personal.</li><li>Con garantía.</li></ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
 
-        <!-- Producto 6 -->
-        <div class="product-card">
-            <img src="images/spotify2.png" alt="Spotify Premium">
-            <h3>Spotify Premium Familiar</h3>
-            <p class="duration">12 Meses Familiar</p>
-            <p class="initial-description">Spotify Premium Familiar por 365 Días.</p>
-            <p class="price" data-price-usd="37.80">$37.80</p>
-            <ul class="features-list">
-                <li>Todo lo del Premium Individual para hasta 6 cuentas.</li>
-                <li>Millones de canciones sin anuncios!</li>
-                <li>Sin APKs ni programas externos.</li>
-                <li>Descarga y escucha música sin conexión.</li>
-                <li>Reproducción mejorada para una mejor inmersión.</li>
-                <li>Garantía por 365 Días.</li>
-            </ul>
-            <div class="product-card-actions">
-                <a href="https://discord.gg/q9EceVXxGg" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito">
-                    <i class="fas fa-shopping-cart"></i>
-                </a>
-                <a href="https://www.paypal.com/ncp/payment/KACWZREB62RMC" target="_blank" rel="noopener noreferrer" class="paypal-btn" aria-label="Pagar con PayPal">
-                    <i class="fab fa-paypal"></i>
-                </a>
-            </div>
-        </div>
-    </main>
+            <!-- PRODUCTOS CRUNCHYROLL -->
+            <div class="product-card" data-category="crunchyroll"><img src="images/crunchyroll1.png" alt="Crunchyroll"><h3>Crunchyroll</h3><p class="duration">12 Meses Cuenta Completa</p><p class="initial-description">Todos los perfiles disponibles.</p><p class="price" data-price-usd="8.25">$8.25</p><ul class="features-list"><li>Cuenta completa con todos los perfiles disponibles.</li><li>Con garantía.</li></ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
+            <div class="product-card" data-category="crunchyroll"><img src="images/crunchyroll1.png" alt="Crunchyroll Perfil"><h3>Crunchyroll</h3><p class="duration">12 Meses Perfil</p><p class="initial-description">Perfil privado con PIN.</p><p class="price" data-price-usd="4.00">$4.00</p><ul class="features-list"><li>Perfil privado con PIN personal.</li><li>Con garantía.</li></ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
+            <div class="product-card" data-category="crunchyroll"><img src="images/crunchyroll1.png" alt="Crunchyroll"><h3>Crunchyroll</h3><p class="duration">6 Meses Cuenta Completa</p><p class="initial-description">Todos los perfiles disponibles.</p><p class="price" data-price-usd="5.75">$5.75</p><ul class="features-list"><li>Cuenta completa con todos los perfiles disponibles.</li><li>Con garantía.</li></ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
+            <div class="product-card" data-category="crunchyroll"><img src="images/crunchyroll1.png" alt="Crunchyroll"><h3>Crunchyroll</h3><p class="duration">3 Meses Cuenta Completa</p><p class="initial-description">Todos los perfiles disponibles.</p><p class="price" data-price-usd="3.75">$3.75</p><ul class="features-list"><li>Cuenta completa con todos los perfiles disponibles.</li><li>Con garantía.</li></ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
+            <div class="product-card" data-category="crunchyroll"><img src="images/crunchyroll1.png" alt="Crunchyroll"><h3>Crunchyroll</h3><p class="duration">1 Mes Cuenta Completa</p><p class="initial-description">Todos los perfiles disponibles.</p><p class="price" data-price-usd="2.00">$2.00</p><ul class="features-list"><li>Cuenta completa con todos los perfiles disponibles.</li><li>Con garantía.</li></ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
 
-    <footer>
-        <a href="https://discord.gg/q9EceVXxGg" target="_blank" class="footer-icon-link" aria-label="Carrito de Compra">
-            <i class="fas fa-shopping-cart"></i>
-        </a>
-        <a href="https://discord.gg/q9EceVXxGg" target="_blank" class="footer-icon-link" aria-label="Servidor de Discord">
-            <i class="fab fa-discord"></i>
-        </a>
-    </footer>
+        </main>
+
+        <footer class="footer">
+            <a href="https://discord.gg/rQu9tuVF" target="_blank" class="footer-icon-link" aria-label="Carrito de Compra">
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+            <a href="https://discord.gg/rQu9tuVF" target="_blank" class="footer-icon-link" aria-label="Servidor de Discord">
+                <i class="fab fa-discord"></i>
+            </a>
+        </footer>
+    </div> <!-- Fin de .main-content-wrapper -->
 
 <script>
+    // Tu script JS existente va aquí, sin cambios en esta etapa,
+    // solo verificaremos si alguna parte del script depende del botón de toggle
+    // que hemos movido/renombrado.
     document.addEventListener('DOMContentLoaded', function () {
         const currencySelector = document.getElementById('currency-selector');
         const productPrices = document.querySelectorAll('.product-card .price');
+        const productCards = document.querySelectorAll('.product-card'); 
+        const filterSidebar = document.getElementById('filter-sidebar');
+        const sidebarCloseBtn = document.getElementById('sidebar-close-btn');
+        const sidebarOpenBtn = document.getElementById('sidebar-open-btn');
+        const filterBtns = document.querySelectorAll('.filter-nav .filter-btn');
+        const mainContentWrapper = document.getElementById('main-content-wrapper');
+        
+        let activeFilters = ['all']; 
+        const allCategories = Array.from(filterBtns)
+                                .map(btn => btn.dataset.filter)
+                                .filter(f => f !== 'all');
 
-        const exchangeRates = {
-            USD: { rate: 1, symbol: '$', code: 'USD', name: 'Dólar USA' },
-            PEN: { rate: 3.65, symbol: 'S/', code: 'PEN', name: 'Sol Peruano' },
-            MXN: { rate: 19.24, symbol: 'MXN ', code: 'MXN', name: 'Peso Mexicano' }, 
-            ARS: { rate: 1134.36, symbol: 'ARS ', code: 'ARS', name: 'Peso Argentino' }, 
-            COP: { rate: 4170.12, symbol: 'COP ', code: 'COP', name: 'Peso Colombiano' }, 
-            ECU: { rate: 1, symbol: '$', code: 'USD', name: 'Dólar (Ecuador)' },
-            VES: { rate: 94.95, symbol: 'Bs.', code: 'VES', name: 'Bolívar Vzlano.' }
-        };
-
+        const exchangeRates = { USD: { rate: 1, symbol: '$', code: 'USD', name: 'Dólar USA' }, PEN: { rate: 3.65, symbol: 'S/', code: 'PEN', name: 'Sol Peruano' }, MXN: { rate: 19.24, symbol: 'MXN ', code: 'MXN', name: 'Peso Mexicano' },  ARS: { rate: 1134.36, symbol: 'ARS ', code: 'ARS', name: 'Peso Argentino' },  COP: { rate: 4170.12, symbol: 'COP ', code: 'COP', name: 'Peso Colombiano' },  ECU: { rate: 1, symbol: '$', code: 'USD', name: 'Dólar (Ecuador)' }, VES: { rate: 94.95, symbol: 'Bs.', code: 'VES', name: 'Bolívar Vzlano.' } };
         const currencyOrder = ['USD', 'PEN', 'MXN', 'ARS', 'COP', 'ECU', 'VES'];
+        currencyOrder.forEach(currencyCode => { if (exchangeRates[currencyCode]) { const option = document.createElement('option'); option.value = currencyCode; let optionText = `${exchangeRates[currencyCode].name} (${exchangeRates[currencyCode].symbol.trim()})`; if (['MXN', 'ARS', 'COP'].includes(currencyCode)) { optionText = `${exchangeRates[currencyCode].name}`;  } option.textContent = optionText; if (currencyCode === 'USD') { option.selected = true; } currencySelector.appendChild(option); } });
+        function updatePrices() { const selectedCurrency = currencySelector.value; if (!exchangeRates[selectedCurrency]) return;  const targetRate = exchangeRates[selectedCurrency].rate; const targetSymbol = exchangeRates[selectedCurrency].symbol; productPrices.forEach(priceElement => { const priceUSDString = priceElement.getAttribute('data-price-usd'); if (priceUSDString) { const priceUSD = parseFloat(priceUSDString); if (!isNaN(priceUSD)) { let convertedPrice = priceUSD * targetRate; let formattedPrice; if (selectedCurrency === 'USD' && priceUSD === 5.25) { formattedPrice = priceUSD.toFixed(2); } else { convertedPrice = Math.floor(convertedPrice * 10) / 10; formattedPrice = convertedPrice.toFixed(2); } priceElement.textContent = `${targetSymbol}${formattedPrice}`; } } }); }
+        if (currencySelector) {  currencySelector.addEventListener('change', updatePrices); updatePrices();  }
 
-        currencyOrder.forEach(currencyCode => {
-            if (exchangeRates[currencyCode]) {
-                const option = document.createElement('option');
-                option.value = currencyCode;
-                let optionText = `${exchangeRates[currencyCode].name} (${exchangeRates[currencyCode].symbol.trim()})`;
-                if (['MXN', 'ARS', 'COP'].includes(currencyCode)) {
-                    optionText = `${exchangeRates[currencyCode].name}`; 
-                }
-                option.textContent = optionText;
-                if (currencyCode === 'USD') {
-                    option.selected = true;
-                }
-                currencySelector.appendChild(option);
-            }
-        });
-
-        function updatePrices() {
-            const selectedCurrency = currencySelector.value;
-            if (!exchangeRates[selectedCurrency]) return; 
-
-            const targetRate = exchangeRates[selectedCurrency].rate;
-            const targetSymbol = exchangeRates[selectedCurrency].symbol;
-
-            productPrices.forEach(priceElement => {
-                const priceUSDString = priceElement.getAttribute('data-price-usd');
-                if (priceUSDString) {
-                    const priceUSD = parseFloat(priceUSDString);
-                    if (!isNaN(priceUSD)) {
-                        let convertedPrice = priceUSD * targetRate;
-                        let formattedPrice;
-
-                        // Condición especial para el precio de 3 meses ($5.25) cuando se muestra en USD
-                        if (selectedCurrency === 'USD' && priceUSD === 5.25) {
-                            formattedPrice = priceUSD.toFixed(2); // Mostrar $5.25 tal cual
-                        } else {
-                            // Lógica de redondeo general: hacia abajo al primer decimal (X.Y0)
-                            convertedPrice = Math.floor(convertedPrice * 10) / 10;
-                            formattedPrice = convertedPrice.toFixed(2); // Asegurar siempre dos decimales para visualización
-                        }
-                        
-                        priceElement.textContent = `${targetSymbol}${formattedPrice}`;
-                    }
+        function applyFilters() {
+            productCards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+                if (activeFilters.includes('all') || activeFilters.includes(cardCategory)) {
+                    card.style.display = 'flex'; 
+                } else {
+                    card.style.display = 'none';
                 }
             });
         }
 
-        if (currencySelector) { 
-            currencySelector.addEventListener('change', updatePrices);
-            updatePrices(); 
-        } else {
-            console.error("Elemento #currency-selector no encontrado.");
+        function updateFilterButtonsUI() {
+            filterBtns.forEach(btn => {
+                const filterValue = btn.dataset.filter;
+                if (activeFilters.includes(filterValue)) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
         }
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const clickedFilter = this.dataset.filter;
+                if (clickedFilter === 'all') {
+                    activeFilters = ['all'];
+                } else {
+                    const allIndex = activeFilters.indexOf('all');
+                    if (allIndex > -1) { activeFilters.splice(allIndex, 1); }
+                    const filterIndex = activeFilters.indexOf(clickedFilter);
+                    if (filterIndex > -1) { activeFilters.splice(filterIndex, 1); } 
+                    else { activeFilters.push(clickedFilter); }
+                    if (activeFilters.length === 0) { activeFilters = ['all']; }
+                    else if (activeFilters.length === allCategories.length && !activeFilters.includes('all')) {
+                         activeFilters = ['all'];
+                    }
+                }
+                updateFilterButtonsUI();
+                applyFilters();
+            });
+        });
+
+        function toggleSidebar(open) {
+            if (open) {
+                filterSidebar.classList.add('open');
+                mainContentWrapper.classList.add('shifted');
+                if(sidebarOpenBtn) sidebarOpenBtn.style.display = 'none'; 
+                if(sidebarCloseBtn) sidebarCloseBtn.style.display = 'flex'; 
+                localStorage.setItem('sidebarState', 'open');
+            } else {
+                filterSidebar.classList.remove('open');
+                mainContentWrapper.classList.remove('shifted');
+                if(sidebarOpenBtn) sidebarOpenBtn.style.display = 'flex';  
+                if(sidebarCloseBtn) sidebarCloseBtn.style.display = 'none'; 
+                localStorage.setItem('sidebarState', 'closed');
+            }
+        }
+
+        if(sidebarOpenBtn) sidebarOpenBtn.addEventListener('click', () => toggleSidebar(true));
+        if(sidebarCloseBtn) sidebarCloseBtn.addEventListener('click', () => toggleSidebar(false));
+        
+        const savedSidebarState = localStorage.getItem('sidebarState');
+        // Decidimos si abrir o no basado en el estado guardado.
+        // Si quieres que se abra siempre la primera vez, descomenta la siguiente línea y comenta la de abajo.
+        // if (savedSidebarState === null || savedSidebarState === 'open') {
+        if (savedSidebarState === 'open') { 
+             setTimeout(() => { toggleSidebar(true); }, 250);
+        } else { 
+            toggleSidebar(false); 
+        }
+        
+        updateFilterButtonsUI();
+        applyFilters();
+
+        let activeCard = null;
+        productCards.forEach(card => { card.addEventListener('click', function(event) { if (activeCard && activeCard !== this) { activeCard.classList.remove('product-card--active'); } this.classList.add('product-card--active'); activeCard = this; event.stopPropagation(); }); });
+        document.body.addEventListener('click', function(event) { if (!event.target.closest('.product-card') && activeCard) { activeCard.classList.remove('product-card--active'); activeCard = null; } });
     });
 </script>
 </body>
