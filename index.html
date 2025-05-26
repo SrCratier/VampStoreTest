@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vamp Store - Spotify Premium</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Google Fonts: Añadidos pesos 500 y 600 para el selector y tooltip -->
     <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -18,11 +16,10 @@
                 <h1 class="store-name">amp Store</h1>
             </div>
         </a>
-        <!-- Selector de Moneda -->
         <div class="currency-selector-container">
             <i class="fas fa-coins currency-icon"></i>
             <select id="currency-selector" aria-label="Seleccionar Moneda">
-                <!-- Las opciones se llenarán con JavaScript -->
+                <!-- Opciones llenadas con JS -->
             </select>
         </div>
     </header>
@@ -42,9 +39,14 @@
                 <li>Reproducción mejorada para una mejor inmersión.</li>
                 <li>Garantía por 30 Días.</li>
             </ul>
-            <a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito">
-                <i class="fas fa-shopping-cart"></i>
-            </a>
+            <div class="product-card-actions">
+                <a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a href="https://www.paypal.com/ncp/payment/9G2X4VBUGW62S" target="_blank" rel="noopener noreferrer" class="paypal-btn" aria-label="Pagar con PayPal">
+                    <i class="fab fa-paypal"></i>
+                </a>
+            </div>
         </div>
 
         <!-- Producto 2 -->
@@ -61,18 +63,23 @@
                 <li>Reproducción mejorada para una mejor inmersión.</li>
                 <li>Garantía por 60 Días.</li>
             </ul>
-            <a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito">
-                <i class="fas fa-shopping-cart"></i>
-            </a>
+            <div class="product-card-actions">
+                <a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a href="https://www.paypal.com/ncp/payment/33PWTYTE9AW5E" target="_blank" rel="noopener noreferrer" class="paypal-btn" aria-label="Pagar con PayPal">
+                    <i class="fab fa-paypal"></i>
+                </a>
+            </div>
         </div>
 
-        <!-- Producto 3: Precio Corregido -->
+        <!-- Producto 3 -->
         <div class="product-card">
             <img src="images/spotify3.png" alt="Spotify Premium">
             <h3>Spotify Premium</h3>
             <p class="duration">3 Meses</p>
             <p class="initial-description">Spotify Premium por 90 Días.</p>
-            <p class="price" data-price-usd="5.25">$5.25</p>
+            <p class="price" data-price-usd="5.25">$5.25</p> <!-- Precio original sin redondeo especial en USD -->
             <ul class="features-list">
                 <li>Millones de canciones sin anuncios!</li>
                 <li>Sin APKs ni programas externos.</li>
@@ -80,9 +87,14 @@
                 <li>Activación vía login, segura, rápida y totalmente personal.</li>
                 <li>Garantía por 90 Días.</li>
             </ul>
-            <a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito">
-                <i class="fas fa-shopping-cart"></i>
-            </a>
+            <div class="product-card-actions">
+                <a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a href="https://www.paypal.com/ncp/payment/X435J8L4J92Q2" target="_blank" rel="noopener noreferrer" class="paypal-btn" aria-label="Pagar con PayPal">
+                    <i class="fab fa-paypal"></i>
+                </a>
+            </div>
         </div>
 
         <!-- Producto 4 -->
@@ -99,9 +111,14 @@
                 <li>Activación vía login, segura, rápida y totalmente personal.</li>
                 <li>Garantía por 180 Días.</li>
             </ul>
-            <a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito">
-                <i class="fas fa-shopping-cart"></i>
-            </a>
+            <div class="product-card-actions">
+                <a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a href="https://www.paypal.com/ncp/payment/YTW49RHJUZQBJ" target="_blank" rel="noopener noreferrer" class="paypal-btn" aria-label="Pagar con PayPal">
+                    <i class="fab fa-paypal"></i>
+                </a>
+            </div>
         </div>
 
         <!-- Producto 5 -->
@@ -118,9 +135,14 @@
                 <li>Activación vía login, segura, rápida y totalmente personal.</li>
                 <li>Garantía por 365 Días.</li>
             </ul>
-            <a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito">
-                <i class="fas fa-shopping-cart"></i>
-            </a>
+            <div class="product-card-actions">
+                <a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a href="https://www.paypal.com/ncp/payment/3L4FRRXU6WVZ8" target="_blank" rel="noopener noreferrer" class="paypal-btn" aria-label="Pagar con PayPal">
+                    <i class="fab fa-paypal"></i>
+                </a>
+            </div>
         </div>
 
         <!-- Producto 6 -->
@@ -138,9 +160,14 @@
                 <li>Reproducción mejorada para una mejor inmersión.</li>
                 <li>Garantía por 365 Días.</li>
             </ul>
-            <a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito">
-                <i class="fas fa-shopping-cart"></i>
-            </a>
+            <div class="product-card-actions">
+                <a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a href="https://www.paypal.com/ncp/payment/KACWZREB62RMC" target="_blank" rel="noopener noreferrer" class="paypal-btn" aria-label="Pagar con PayPal">
+                    <i class="fab fa-paypal"></i>
+                </a>
+            </div>
         </div>
     </main>
 
@@ -158,14 +185,12 @@
         const currencySelector = document.getElementById('currency-selector');
         const productPrices = document.querySelectorAll('.product-card .price');
 
-        // Tasas de cambio y símbolos actualizados
         const exchangeRates = {
             USD: { rate: 1, symbol: '$', code: 'USD', name: 'Dólar USA' },
             PEN: { rate: 3.65, symbol: 'S/', code: 'PEN', name: 'Sol Peruano' },
-            // Símbolos actualizados para MXN, ARS, COP
-            MXN: { rate: 19.24, symbol: 'MXN ', code: 'MXN', name: 'Peso Mexicano' }, // Símbolo cambiado
-            ARS: { rate: 1134.36, symbol: 'ARS ', code: 'ARS', name: 'Peso Argentino' }, // Símbolo cambiado
-            COP: { rate: 4170.12, symbol: 'COP ', code: 'COP', name: 'Peso Colombiano' }, // Símbolo cambiado
+            MXN: { rate: 19.24, symbol: 'MXN ', code: 'MXN', name: 'Peso Mexicano' }, 
+            ARS: { rate: 1134.36, symbol: 'ARS ', code: 'ARS', name: 'Peso Argentino' }, 
+            COP: { rate: 4170.12, symbol: 'COP ', code: 'COP', name: 'Peso Colombiano' }, 
             ECU: { rate: 1, symbol: '$', code: 'USD', name: 'Dólar (Ecuador)' },
             VES: { rate: 94.95, symbol: 'Bs.', code: 'VES', name: 'Bolívar Vzlano.' }
         };
@@ -176,13 +201,11 @@
             if (exchangeRates[currencyCode]) {
                 const option = document.createElement('option');
                 option.value = currencyCode;
-                // Ajuste para el texto de la opción si el símbolo ya es el código de moneda
                 let optionText = `${exchangeRates[currencyCode].name} (${exchangeRates[currencyCode].symbol.trim()})`;
                 if (['MXN', 'ARS', 'COP'].includes(currencyCode)) {
-                    optionText = `${exchangeRates[currencyCode].name}`; // No duplicar el código de moneda
+                    optionText = `${exchangeRates[currencyCode].name}`; 
                 }
                 option.textContent = optionText;
-
                 if (currencyCode === 'USD') {
                     option.selected = true;
                 }
@@ -203,13 +226,16 @@
                     const priceUSD = parseFloat(priceUSDString);
                     if (!isNaN(priceUSD)) {
                         let convertedPrice = priceUSD * targetRate;
-                        
-                        // Nuevo redondeo: redondear hacia abajo al primer decimal (X.Y0)
-                        // Multiplica por 10, redondea hacia abajo, luego divide por 10
-                        convertedPrice = Math.floor(convertedPrice * 10) / 10;
-                        
-                        // Asegurar siempre dos decimales para la visualización (e.g., 2.30)
-                        let formattedPrice = convertedPrice.toFixed(2);
+                        let formattedPrice;
+
+                        // Condición especial para el precio de 3 meses ($5.25) cuando se muestra en USD
+                        if (selectedCurrency === 'USD' && priceUSD === 5.25) {
+                            formattedPrice = priceUSD.toFixed(2); // Mostrar $5.25 tal cual
+                        } else {
+                            // Lógica de redondeo general: hacia abajo al primer decimal (X.Y0)
+                            convertedPrice = Math.floor(convertedPrice * 10) / 10;
+                            formattedPrice = convertedPrice.toFixed(2); // Asegurar siempre dos decimales para visualización
+                        }
                         
                         priceElement.textContent = `${targetSymbol}${formattedPrice}`;
                     }
