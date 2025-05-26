@@ -34,8 +34,8 @@ body {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Para espaciar logo y selector */
-    position: relative; /* Para el tooltip del selector de moneda */
+    justify-content: space-between; 
+    position: relative; 
 }
 
 .logo-link {
@@ -73,15 +73,14 @@ body {
     transition: opacity 0.3s ease;
 }
 
-/* Estilos para el selector de moneda */
 .currency-selector-container {
     display: flex;
     align-items: center;
     background-color: rgba(255, 255, 255, 0.05);
     padding: 8px 15px;
-    border-radius: 25px; /* Más redondeado */
+    border-radius: 25px; 
     border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease; /* Transición suave para hover */
+    transition: all 0.3s ease; 
 }
 
 .currency-selector-container:hover {
@@ -92,7 +91,7 @@ body {
 .currency-icon {
     color: var(--accent-color);
     margin-right: 10px;
-    font-size: 1.3em; /* Icono un poco más grande */
+    font-size: 1.3em; 
     transition: transform 0.3s ease;
 }
 
@@ -105,16 +104,16 @@ body {
     color: var(--text-color);
     border: none;
     font-family: var(--main-font);
-    font-size: 1em; /* Tamaño de fuente del selector */
+    font-size: 1em; 
     font-weight: 500;
     padding: 5px;
     border-radius: 5px;
     cursor: pointer;
     outline: none;
-    -webkit-appearance: none; /* Quitar estilos por defecto en Safari/Chrome */
-    -moz-appearance: none; /* Quitar estilos por defecto en Firefox */
-    appearance: none; /* Quitar estilos por defecto */
-    padding-right: 20px; /* Espacio para el pseudo-elemento de flecha */
+    -webkit-appearance: none; 
+    -moz-appearance: none; 
+    appearance: none; 
+    padding-right: 20px; 
     background-image: url('data:image/svg+xml;utf8,<svg fill="%23E0E0E0" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
     background-repeat: no-repeat;
     background-position: right 5px center;
@@ -127,14 +126,13 @@ body {
     font-weight: 400;
 }
 
-/* Tooltip para el selector de moneda */
 .currency-selector-container::before {
     content: 'Cambiar Moneda';
     position: absolute;
     bottom: -30px; 
-    right: 20px; /* Alineado con el selector */
+    right: 20px; 
     background-color: var(--accent-color);
-    color: #0D0212; /* Texto oscuro para contraste */
+    color: #0D0212; 
     font-weight: 600;
     padding: 4px 10px;
     border-radius: 5px;
@@ -166,7 +164,7 @@ body {
     background-color: var(--card-bg);
     border-radius: 12px;
     padding: 20px;
-    text-align: left; /* Mantenido de tu nuevo CSS */
+    text-align: left; 
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -180,7 +178,7 @@ body {
 }
 
 .product-card img {
-    max-width: 70%; /* Mantenido, puedes ajustar si es necesario */
+    max-width: 70%; 
     height: auto;
     aspect-ratio: 1 / 1;
     object-fit: contain;
@@ -204,7 +202,7 @@ body {
     text-align: center;
 }
 
-.initial-description { /* Tus estilos para la descripción */
+.initial-description { 
     font-size: 0.9em;
     color: #b0b0b0;
     margin-bottom: 10px;
@@ -219,13 +217,13 @@ body {
     text-align: center;
 }
 
-.features-list { /* Tus estilos para la lista de características */
+.features-list { 
     list-style: none;
     padding-left: 0;
     margin-bottom: 15px;
     font-size: 0.85em;
     color: #c0c0c0;
-    flex-grow: 1; /* Para que ocupe espacio y empuje el botón si es necesario */
+    flex-grow: 1; /* Para que ocupe espacio y empuje los botones hacia abajo */
 }
 
 .features-list li {
@@ -241,11 +239,25 @@ body {
     left: 0;
     color: var(--accent-color);
     font-size: 0.9em;
-    top: 1px; /* Ajusta si es necesario para alinear la viñeta */
+    top: 1px; 
 }
 
-.add-to-cart-btn { /* Tus estilos para el botón */
-    display: block;
+/* Contenedor para los botones de acción en la tarjeta */
+.product-card-actions {
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    gap: 10px; 
+    margin-top: auto; /* Empuja el contenedor de botones al final de la tarjeta */
+    width: 90%; 
+    margin-left: auto; 
+    margin-right: auto; 
+    padding-top: 10px; 
+}
+
+.add-to-cart-btn {
+    flex-grow: 1; 
+    max-width: 200px; 
     background-color: var(--accent-color);
     color: #fff;
     padding: 10px 18px;
@@ -255,9 +267,7 @@ body {
     font-weight: 600;
     transition: background-color 0.3s ease, transform 0.2s ease;
     text-align: center;
-    width: 80%; /* Mantenido */
-    margin: 10px auto 0; /* Mantenido */
-    margin-top: auto; /* Asegura que el botón se quede abajo */
+    border: none;
 }
 
 .add-to-cart-btn:hover {
@@ -267,10 +277,34 @@ body {
 }
 
 .add-to-cart-btn i {
-    margin-right: 0; /* Para que el icono quede solo */
+    margin-right: 0; 
 }
 
-footer { /* Tus estilos para el footer */
+/* Estilos para el botón de PayPal */
+.paypal-btn {
+    display: inline-flex; 
+    align-items: center;
+    justify-content: center;
+    width: 44px; 
+    height: 44px; 
+    background-color: #003087; /* Color oficial de PayPal (azul oscuro) */
+    color: #ffffff; /* Ícono blanco */
+    border: none; 
+    border-radius: 8px; 
+    text-decoration: none;
+    font-size: 1.5em; /* Tamaño del ícono de PayPal */
+    transition: all 0.3s ease;
+    flex-shrink: 0; 
+}
+
+.paypal-btn:hover {
+    background-color: #002466; /* Un azul un poco más oscuro al pasar el mouse */
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 48, 135, 0.4); /* Sombra con el color de PayPal */
+}
+
+
+footer { 
     text-align: center;
     padding: 30px 20px;
     background-color: rgba(0,0,0,0.2);
@@ -279,10 +313,10 @@ footer { /* Tus estilos para el footer */
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 40px; /* Mantenido */
+    gap: 40px; 
 }
 
-.footer-icon-link { /* Tus estilos para los iconos del footer */
+.footer-icon-link { 
     display: inline-flex;
     align-items: center;
     text-decoration: none;
@@ -296,71 +330,44 @@ footer { /* Tus estilos para el footer */
     transform: translateY(-3px) scale(1.1);
 }
 
-/* Media query para mejorar visualización en pantallas pequeñas */
 @media (max-width: 768px) {
     .navbar {
         padding: 15px 20px;
-        flex-direction: column; /* Apilar logo y selector en móviles */
-        gap: 15px; /* Espacio entre logo y selector */
+        flex-direction: column; 
+        gap: 15px; 
     }
 
-    .logo-v {
-        font-size: 3rem;
-    }
-    .store-name {
-        font-size: 1.8rem;
-    }
+    .logo-v { font-size: 3rem; }
+    .store-name { font-size: 1.8rem; }
+    .currency-selector-container::before { display: none; }
+    .product-grid { padding: 20px; gap: 20px; }
+    .product-card h3 { font-size: 1.2em; }
+    .product-card .price { font-size: 1.5em; }
+    .features-list { font-size: 0.8em; }
+    .initial-description { font-size: 0.85em; }
 
-    .currency-selector-container::before { /* Esconder tooltip en móviles para no estorbar */
-        display: none;
-    }
-
-    .product-grid {
-        padding: 20px;
-        gap: 20px;
-    }
-
-    .product-card h3 {
-        font-size: 1.2em;
-    }
-    .product-card .price {
-        font-size: 1.5em;
+    .product-card-actions {
+        width: 100%; 
+        gap: 8px; 
     }
     .add-to-cart-btn {
+        padding: 9px 15px;
         font-size: 1em;
-        padding: 9px 16px;
-        width: 90%; /* Ajustar ancho en móviles si es necesario */
     }
-    .features-list {
-        font-size: 0.8em;
+    .paypal-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.4em;
     }
-    .initial-description {
-        font-size: 0.85em;
-    }
-    footer {
-        padding: 20px 15px;
-        gap: 30px;
-    }
-    .footer-icon-link {
-        font-size: 2em;
-    }
+
+    footer { padding: 20px 15px; gap: 30px; }
+    .footer-icon-link { font-size: 2em; }
 }
 
 @media (max-width: 480px) {
-    .logo-container {
-        align-items: center; 
-        text-align: center; 
-    }
-    .logo-v {
-        font-size: 2.5rem;
-    }
-    .store-name {
-        font-size: 1.5rem;
-    }
-    #currency-selector {
-        font-size: 0.9em;
-    }
-    .product-card {
-        padding: 15px;
-    }
+    .logo-container { align-items: center; text-align: center; }
+    .logo-v { font-size: 2.5rem; }
+    .store-name { font-size: 1.5rem; }
+    #currency-selector { font-size: 0.9em; }
+    .product-card { padding: 15px; }
 }
