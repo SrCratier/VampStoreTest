@@ -1,4 +1,7 @@
 # CÓDIGO CREADO POR @SrCratier (Nvx) o simplemente Cratier. Este es un proyecto personal PROTEGIDO por derechos de autor.
+
+ESTA PÁGINA ES LA BASE (TEST) PARA UN NUEVO PROYECTO PERSONAL UNA VEZ LA TERMINE SERÁ DE USO LIBRE.
+
 Actualización 0.1
 - Se creó el códig base .html y .css
 - Se crearon los espacios donde coloque los precios, imágenes y descripciones de Spotify
