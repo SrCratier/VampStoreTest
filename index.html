@@ -9,7 +9,28 @@
     <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Menú lateral de filtros -->
+    <!-- Navbar: Fijo en la parte superior -->
+    <header class="navbar">
+        <a href="https://vampclub.shop/" target="_blank" rel="noopener noreferrer" class="logo-link">
+            <div class="logo-container">
+                <span class="logo-v">V</span>
+                <h1 class="store-name">amp Store</h1>
+            </div>
+        </a>
+        <!-- Barra de búsqueda -->
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="search-input" placeholder="Buscar productos..." aria-label="Buscar productos por nombre">
+        </div>
+        <div class="currency-selector-container">
+            <i class="fas fa-coins currency-icon"></i>
+            <select id="currency-selector" aria-label="Seleccionar Moneda">
+                <!-- Opciones llenadas con JS -->
+            </select>
+        </div>
+    </header>
+
+    <!-- Menú lateral de filtros (Sidebar): Fijo a la izquierda, debajo del navbar -->
     <aside id="filter-sidebar" class="filter-sidebar" aria-labelledby="filter-sidebar-heading">
         <div class="filter-sidebar-header">
             <h2 id="filter-sidebar-heading">Filtrar Servicios</h2>
@@ -23,6 +44,26 @@
             <button class="filter-btn" data-filter="netflix"><i class="fas fa-tv"></i> Netflix</button>
             <button class="filter-btn" data-filter="crunchyroll"><i class="fas fa-bolt"></i> Crunchyroll</button>
         </nav>
+
+        <!-- Sección de filtros de precio -->
+        <div class="price-filter-section">
+            <h3 class="price-filter-heading">FILTRAR POR PRECIO</h3>
+            <p class="current-price-range"><span id="overall-min-price-display"></span> - <span id="overall-max-price-display"></span></p>
+
+            <div class="slider-group">
+                <label for="min-price-slider">Mínimo: <span id="min-price-value"></span></label>
+                <input type="range" id="min-price-slider" min="0" max="40" value="0" step="0.1">
+            </div>
+
+            <div class="slider-group">
+                <label for="max-price-slider">Máximo: <span id="max-price-value"></span></label>
+                <input type="range" id="max-price-slider" min="0" max="40" value="40" step="0.1">
+            </div>
+
+            <button id="reset-price-filters" class="reset-price-btn">Resetear Filtros</button>
+        </div>
+        <!-- Fin Sección de filtros de precio -->
+
         <!-- Botón de CIERRE DENTRO de la Sidebar -->
         <button id="sidebar-close-btn" class="sidebar-toggle-btn sidebar-close-btn" aria-label="Cerrar filtros">
             <i class="fas fa-chevron-left"></i> <span>Cerrar Filtros</span>
@@ -30,26 +71,11 @@
     </aside>
 
     <!-- Contenedor principal que se desplazará -->
-    <div class="main-content-wrapper" id="main-content-wrapper">
-        <!-- Botón de ABRIR FUERA de la Sidebar, DENTRO del wrapper -->
+    <div class="page-content-wrapper" id="page-content-wrapper">
+        <!-- Botón de ABRIR FUERA de la Sidebar, DENTRO del wrapper pero fixed -->
         <button id="sidebar-open-btn" class="sidebar-open-btn" aria-label="Abrir filtros">
             <i class="fas fa-filter"></i> <span>Filtros</span>
         </button>
-
-        <header class="navbar">
-            <a href="https://vampclub.shop/" target="_blank" rel="noopener noreferrer" class="logo-link">
-                <div class="logo-container">
-                    <span class="logo-v">V</span>
-                    <h1 class="store-name">amp Store</h1>
-                </div>
-            </a>
-            <div class="currency-selector-container">
-                <i class="fas fa-coins currency-icon"></i>
-                <select id="currency-selector" aria-label="Seleccionar Moneda">
-                    <!-- Opciones llenadas con JS -->
-                </select>
-            </div>
-        </header>
 
         <main class="product-grid">
             <!-- PRODUCTOS SPOTIFY -->
@@ -98,20 +124,36 @@
                 <i class="fab fa-discord"></i>
             </a>
         </footer>
-    </div> <!-- Fin de .main-content-wrapper -->
+    </div> <!-- Fin de .page-content-wrapper -->
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const currencySelector = document.getElementById('currency-selector');
         const productPrices = document.querySelectorAll('.product-card .price');
         const productCards = document.querySelectorAll('.product-card'); 
+        const filterBtns = document.querySelectorAll('.filter-nav .filter-btn');
+        
+        // Elementos para el filtro de precio
+        const minPriceSlider = document.getElementById('min-price-slider');
+        const maxPriceSlider = document.getElementById('max-price-slider');
+        const minPriceValueDisplay = document.getElementById('min-price-value');
+        const maxPriceValueDisplay = document.getElementById('max-price-value');
+        const overallMinPriceDisplay = document.getElementById('overall-min-price-display');
+        const overallMaxPriceDisplay = document.getElementById('overall-max-price-display');
+        const resetPriceBtn = document.getElementById('reset-price-filters');
+
+        // Elemento para la barra de búsqueda
+        const searchInput = document.getElementById('search-input');
+
+        // Elementos de la sidebar
         const filterSidebar = document.getElementById('filter-sidebar');
         const sidebarCloseBtn = document.getElementById('sidebar-close-btn');
         const sidebarOpenBtn = document.getElementById('sidebar-open-btn');
-        const filterBtns = document.querySelectorAll('.filter-nav .filter-btn');
-        const mainContentWrapper = document.getElementById('main-content-wrapper');
-        
+        const pageContentWrapper = document.getElementById('page-content-wrapper'); // Renombrado
+
         let activeFilters = ['all']; 
+        let currentSearchQuery = ''; 
+
         const allCategories = Array.from(filterBtns)
                                 .map(btn => btn.dataset.filter)
                                 .filter(f => f !== 'all');
@@ -119,14 +161,75 @@
         const exchangeRates = { USD: { rate: 1, symbol: '$', code: 'USD', name: 'Dólar USA' }, PEN: { rate: 3.65, symbol: 'S/', code: 'PEN', name: 'Sol Peruano' }, MXN: { rate: 19.24, symbol: 'MXN ', code: 'MXN', name: 'Peso Mexicano' },  ARS: { rate: 1134.36, symbol: 'ARS ', code: 'ARS', name: 'Peso Argentino' },  COP: { rate: 4170.12, symbol: 'COP ', code: 'COP', name: 'Peso Colombiano' },  ECU: { rate: 1, symbol: '$', code: 'USD', name: 'Dólar (Ecuador)' }, VES: { rate: 94.95, symbol: 'Bs.', code: 'VES', name: 'Bolívar Vzlano.' } };
         const currencyOrder = ['USD', 'PEN', 'MXN', 'ARS', 'COP', 'ECU', 'VES'];
         currencyOrder.forEach(currencyCode => { if (exchangeRates[currencyCode]) { const option = document.createElement('option'); option.value = currencyCode; let optionText = `${exchangeRates[currencyCode].name} (${exchangeRates[currencyCode].symbol.trim()})`; if (['MXN', 'ARS', 'COP'].includes(currencyCode)) { optionText = `${exchangeRates[currencyCode].name}`;  } option.textContent = optionText; if (currencyCode === 'USD') { option.selected = true; } currencySelector.appendChild(option); } });
-        function updatePrices() { const selectedCurrency = currencySelector.value; if (!exchangeRates[selectedCurrency]) return;  const targetRate = exchangeRates[selectedCurrency].rate; const targetSymbol = exchangeRates[selectedCurrency].symbol; productPrices.forEach(priceElement => { const priceUSDString = priceElement.getAttribute('data-price-usd'); if (priceUSDString) { const priceUSD = parseFloat(priceUSDString); if (!isNaN(priceUSD)) { let convertedPrice = priceUSD * targetRate; let formattedPrice; if (selectedCurrency === 'USD' && priceUSD === 5.25) { formattedPrice = priceUSD.toFixed(2); } else { convertedPrice = Math.floor(convertedPrice * 10) / 10; formattedPrice = convertedPrice.toFixed(2); } priceElement.textContent = `${targetSymbol}${formattedPrice}`; } } }); }
-        if (currencySelector) {  currencySelector.addEventListener('change', updatePrices); updatePrices();  }
+        
+        function formatPrice(price, symbol) {
+            return `${symbol}${parseFloat(price).toFixed(2)}`;
+        }
+
+        function updatePrices() {
+            const selectedCurrency = currencySelector.value;
+            if (!exchangeRates[selectedCurrency]) return;
+            const targetRate = exchangeRates[selectedCurrency].rate;
+            const targetSymbol = exchangeRates[selectedCurrency].symbol;
+
+            productPrices.forEach(priceElement => {
+                const priceUSDString = priceElement.getAttribute('data-price-usd');
+                if (priceUSDString) {
+                    const priceUSD = parseFloat(priceUSDString);
+                    if (!isNaN(priceUSD)) {
+                        let convertedPrice = priceUSD * targetRate;
+                        let formattedPrice;
+                        if (selectedCurrency === 'USD' && priceUSD.toFixed(2) === '5.25') {
+                            formattedPrice = priceUSD.toFixed(2);
+                        } else {
+                            convertedPrice = Math.floor(convertedPrice * 10) / 10;
+                            formattedPrice = convertedPrice.toFixed(2);
+                        }
+                        priceElement.textContent = `${targetSymbol}${formattedPrice}`;
+                    }
+                }
+            });
+            updatePriceFilterUI(); 
+        }
+
+        function updatePriceFilterUI() {
+            const selectedCurrency = currencySelector.value;
+            const currentExchangeRate = exchangeRates[selectedCurrency] || exchangeRates['USD'];
+            const rate = currentExchangeRate.rate;
+            const symbol = currentExchangeRate.symbol;
+
+            const minValUSD = parseFloat(minPriceSlider.value);
+            const maxValUSD = parseFloat(maxPriceSlider.value);
+
+            minPriceValueDisplay.textContent = formatPrice(minValUSD * rate, symbol);
+            maxPriceValueDisplay.textContent = formatPrice(maxValUSD * rate, symbol);
+
+            overallMinPriceDisplay.textContent = formatPrice(minValUSD * rate, symbol);
+            overallMaxPriceDisplay.textContent = formatPrice(maxValUSD * rate, symbol);
+        }
+
+        function resetPriceFilters() {
+            minPriceSlider.value = minPriceSlider.min; 
+            maxPriceSlider.value = maxPriceSlider.max; 
+            updatePriceFilterUI(); 
+        }
 
         function applyFilters() {
+            const currentMinPriceUSD = parseFloat(minPriceSlider.value);
+            const currentMaxPriceUSD = parseFloat(maxPriceSlider.value);
+            const searchLower = currentSearchQuery.toLowerCase(); 
+
             productCards.forEach(card => {
                 const cardCategory = card.getAttribute('data-category');
-                if (activeFilters.includes('all') || activeFilters.includes(cardCategory)) {
-                    card.style.display = 'flex'; 
+                const cardPriceUSD = parseFloat(card.querySelector('.price').getAttribute('data-price-usd'));
+                const cardTitle = card.querySelector('h3').textContent.toLowerCase(); 
+
+                const isCategoryMatch = activeFilters.includes('all') || activeFilters.includes(cardCategory);
+                const isPriceMatch = (cardPriceUSD >= currentMinPriceUSD && cardPriceUSD <= currentMaxPriceUSD);
+                const isSearchMatch = (searchLower === '' || cardTitle.includes(searchLower));
+
+                if (isCategoryMatch && isPriceMatch && isSearchMatch) { 
+                    card.style.display = 'flex';
                 } else {
                     card.style.display = 'none';
                 }
@@ -161,20 +264,47 @@
                     }
                 }
                 updateFilterButtonsUI();
-                applyFilters();
+                applyFilters(); 
             });
         });
 
+        searchInput.addEventListener('input', function() {
+            currentSearchQuery = this.value.trim(); 
+            applyFilters(); 
+        });
+
+        minPriceSlider.addEventListener('input', function() {
+            if (parseFloat(minPriceSlider.value) > parseFloat(maxPriceSlider.value)) {
+                maxPriceSlider.value = minPriceSlider.value;
+            }
+            updatePriceFilterUI();
+            applyFilters();
+        });
+
+        maxPriceSlider.addEventListener('input', function() {
+            if (parseFloat(maxPriceSlider.value) < parseFloat(minPriceSlider.value)) {
+                minPriceSlider.value = maxPriceSlider.value;
+            }
+            updatePriceFilterUI();
+            applyFilters();
+        });
+
+        resetPriceBtn.addEventListener('click', function() {
+            resetPriceFilters(); 
+            applyFilters();      
+        });
+
+        // Lógica de toggle de la sidebar (restaurada)
         function toggleSidebar(open) {
             if (open) {
                 filterSidebar.classList.add('open');
-                mainContentWrapper.classList.add('shifted');
+                pageContentWrapper.classList.add('shifted'); // Renombrado
                 if(sidebarOpenBtn) sidebarOpenBtn.style.display = 'none'; 
                 if(sidebarCloseBtn) sidebarCloseBtn.style.display = 'flex'; 
                 localStorage.setItem('sidebarState', 'open');
             } else {
                 filterSidebar.classList.remove('open');
-                mainContentWrapper.classList.remove('shifted');
+                pageContentWrapper.classList.remove('shifted'); // Renombrado
                 if(sidebarOpenBtn) sidebarOpenBtn.style.display = 'flex';  
                 if(sidebarCloseBtn) sidebarCloseBtn.style.display = 'none'; 
                 localStorage.setItem('sidebarState', 'closed');
@@ -184,15 +314,20 @@
         if(sidebarOpenBtn) sidebarOpenBtn.addEventListener('click', () => toggleSidebar(true));
         if(sidebarCloseBtn) sidebarCloseBtn.addEventListener('click', () => toggleSidebar(false));
         
+        // Auto-abrir sidebar al cargar la página
         const savedSidebarState = localStorage.getItem('sidebarState');
-        if (savedSidebarState === null || savedSidebarState === 'open') { // Se abre si es la primera vez o si estaba abierta
-             setTimeout(() => { toggleSidebar(true); }, 250);
+        if (savedSidebarState === null || savedSidebarState === 'open') { 
+             setTimeout(() => { toggleSidebar(true); }, 250); // Pequeño retraso para la animación
         } else { 
             toggleSidebar(false); 
         }
+
+        // Llamadas iniciales al cargar la página
+        if (currencySelector) {  currencySelector.addEventListener('change', updatePrices); updatePrices();  } 
         
+        resetPriceFilters(); 
         updateFilterButtonsUI();
-        applyFilters();
+        applyFilters(); 
 
         let activeCard = null;
         productCards.forEach(card => { card.addEventListener('click', function(event) { if (activeCard && activeCard !== this) { activeCard.classList.remove('product-card--active'); } this.classList.add('product-card--active'); activeCard = this; event.stopPropagation(); }); });
