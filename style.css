@@ -7,8 +7,8 @@
     --gothic-font: 'MedievalSharp', cursive;
     --main-font: 'Roboto', sans-serif;
     --accent-color-rgb: 224, 0, 255; /* RGB del morado original */
-    --orb-glow-color: rgba(255, 0, 255, 0.9); /* Un fucsia/magenta más puro y brillante para las orbes */
-    --navbar-height: 90px; /* Valor por defecto, será sobrescrito por JS */
+    --orb-glow-color: rgba(255, 0, 255, 0.95); /* Fucsia/magenta más puro y brillante para las orbes */
+    --navbar-height: 90px;
     --sidebar-width: 280px; 
     --sidebar-transition-duration: 0.35s;
 }
@@ -22,7 +22,6 @@
 body {
     font-family: var(--main-font);
     background-color: var(--primary-bg);
-    /* Las gradientes estáticas originales (menos visibles con las orbes) */
     background-image: radial-gradient(circle at top left, rgba(74, 20, 140, 0.3), transparent 40%),
                       radial-gradient(circle at bottom right, rgba(171, 71, 188, 0.2), transparent 50%);
     color: var(--text-color);
@@ -30,28 +29,26 @@ body {
     min-height: 100vh;
     display: block; 
     overflow-x: hidden; 
-    position: relative; /* Necesario para posicionar la capa de animación */
+    position: relative;
 }
 
-/* Capa de animación de fondo */
 .background-animation-layer {
-    position: fixed; /* Ocupa toda la ventana */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; /* Detrás de todo el contenido */
-    overflow: hidden; /* Evita desbordamientos si las animaciones salen del viewport */
-    pointer-events: none; /* Asegura que no interfiera con interacciones */
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
 }
 
-/* Base para los orbes animados */
 .orb {
     position: absolute;
     border-radius: 50%;
-    filter: blur(180px); /* Aún más difuso para un efecto de resplandor más amplio */
-    background: radial-gradient(circle, var(--orb-glow-color), transparent 70%); /* Usa el nuevo color vibrante */
-    opacity: 0.85; /* Mayor opacidad base para que resalte más */
+    filter: blur(250px); /* Más difuso para un efecto de resplandor muy amplio y etéreo */
+    background: radial-gradient(circle, var(--orb-glow-color), transparent 70%);
+    opacity: 1; /* Opacidad completa para que resalte mucho */
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
     animation-direction: alternate;
@@ -59,103 +56,102 @@ body {
 
 /* Orbes individuales: tamaño, posición inicial y velocidad */
 .orb-1 {
-    width: 550px; /* Más grande */
-    height: 550px;
-    top: 5%;
-    left: 8%;
-    animation: moveGlowA 8s infinite alternate; /* Más rápido */
+    width: 650px; /* Aún más grande */
+    height: 650px;
+    top: -15%; 
+    left: 0%;
+    animation: moveGlowA 7s infinite alternate;
 }
 
 .orb-2 {
-    width: 480px; 
-    height: 480px;
-    bottom: 0%;
-    right: 12%;
-    animation: moveGlowB 9.5s infinite alternate; /* Más rápido */
+    width: 550px; 
+    height: 550px;
+    bottom: -20%; 
+    right: 5%;
+    animation: moveGlowB 8.5s infinite alternate; 
 }
 
 .orb-3 {
-    width: 400px;
-    height: 400px;
-    top: 15%;
-    right: 3%; /* Más cerca del borde */
-    animation: moveGlowC 11s infinite alternate; /* Más rápido */
+    width: 480px;
+    height: 480px;
+    top: 5%;
+    right: -10%; 
+    animation: moveGlowC 9.5s infinite alternate; 
 }
 
 .orb-4 {
-    width: 430px;
-    height: 430px;
-    bottom: 8%;
-    left: 3%; /* Más cerca del borde */
-    animation: moveGlowD 12.5s infinite alternate; /* Más rápido */
+    width: 580px;
+    height: 580px;
+    bottom: 0%;
+    left: -15%; 
+    animation: moveGlowD 10.5s infinite alternate; 
 }
 
-.orb-5 { /* Nuevo orbe */
-    width: 300px;
-    height: 300px;
-    top: 40%; /* Posición central-izquierda */
-    left: 45%; /* Ligeramente a la derecha para cubrir el centro */
-    animation: moveGlowE 10s infinite alternate; /* Velocidad media */
+.orb-5 { 
+    width: 400px;
+    height: 400px;
+    top: 35%; 
+    left: 30%; 
+    animation: moveGlowE 11.5s infinite alternate; 
 }
 
-.orb-6 { /* Nuevo orbe */
-    width: 350px;
-    height: 350px;
-    top: 60%; /* Posición central-derecha */
-    right: 40%; /* Ligeramente a la izquierda para cubrir el centro */
-    animation: moveGlowF 11.5s infinite alternate; /* Velocidad media */
+.orb-6 { 
+    width: 450px;
+    height: 450px;
+    top: 50%; 
+    right: 25%; 
+    animation: moveGlowF 12.5s infinite alternate; 
 }
 
 
 /* Keyframes para los movimientos y opacidades más notables */
 @keyframes moveGlowA {
-    0% { transform: translate(0, 0) scale(1); opacity: 0.85; } 
-    25% { transform: translate(120px, 80px) scale(1.12); opacity: 0.9; }
-    50% { transform: translate(-180px, 140px) scale(0.88); opacity: 0.85; }
-    75% { transform: translate(100px, -110px) scale(1.18); opacity: 0.92; }
-    100% { transform: translate(0, 0) scale(1); opacity: 0.85; }
+    0% { transform: translate(0, 0) scale(1); opacity: 1; } 
+    25% { transform: translate(180px, 120px) scale(1.15); opacity: 0.95; }
+    50% { transform: translate(-250px, 200px) scale(0.85); opacity: 1; }
+    75% { transform: translate(150px, -180px) scale(1.2); opacity: 0.98; }
+    100% { transform: translate(0, 0) scale(1); opacity: 1; }
 }
 
 @keyframes moveGlowB {
-    0% { transform: translate(0, 0) scale(1); opacity: 0.85; }
-    25% { transform: translate(-150px, -70px) scale(1.1); opacity: 0.87; }
-    50% { transform: translate(170px, -120px) scale(0.9); opacity: 0.9; }
-    75% { transform: translate(-90px, 100px) scale(1.15); opacity: 0.85; }
-    100% { transform: translate(0, 0) scale(1); opacity: 0.85; }
+    0% { transform: translate(0, 0) scale(1); opacity: 1; }
+    25% { transform: translate(-200px, -100px) scale(1.12); opacity: 0.92; }
+    50% { transform: translate(220px, -180px) scale(0.88); opacity: 0.95; }
+    75% { transform: translate(-120px, 150px) scale(1.18); opacity: 1; }
+    100% { transform: translate(0, 0) scale(1); opacity: 1; }
 }
 
 @keyframes moveGlowC {
-    0% { transform: translate(0, 0) scale(1); opacity: 0.85; }
-    25% { transform: translate(-80px, 180px) scale(1.1); opacity: 0.91; }
-    50% { transform: translate(200px, -50px) scale(0.85); opacity: 0.85; }
-    75% { transform: translate(-120px, -160px) scale(1.08); opacity: 0.88; }
-    100% { transform: translate(0, 0) scale(1); opacity: 0.85; }
+    0% { transform: translate(0, 0) scale(1); opacity: 1; }
+    25% { transform: translate(-120px, 250px) scale(1.15); opacity: 0.96; }
+    50% { transform: translate(300px, -80px) scale(0.85); opacity: 1; }
+    75% { transform: translate(-180px, -250px) scale(1.1); opacity: 0.93; }
+    100% { transform: translate(0, 0) scale(1); opacity: 1; }
 }
 
 @keyframes moveGlowD {
-    0% { transform: translate(0, 0) scale(1); opacity: 0.85; }
-    25% { transform: translate(190px, -90px) scale(0.92); opacity: 0.86; }
-    50% { transform: translate(-140px, 220px) scale(1.08); opacity: 0.89; }
-    75% { transform: translate(50px, -200px) scale(0.95); opacity: 0.85; }
-    100% { transform: translate(0, 0) scale(1); opacity: 0.85; }
+    0% { transform: translate(0, 0) scale(1); opacity: 1; }
+    25% { transform: translate(250px, -130px) scale(0.9); opacity: 0.91; }
+    50% { transform: translate(-200px, 300px) scale(1.1); opacity: 0.94; }
+    75% { transform: translate(90px, -280px) scale(0.95); opacity: 1; }
+    100% { transform: translate(0, 0) scale(1); opacity: 1; }
 }
 
-@keyframes moveGlowE { /* Nueva animación para orb-5 */
-    0% { transform: translate(0, 0) scale(1); opacity: 0.85; }
-    33% { transform: translate(50px, -50px) scale(1.05); opacity: 0.88; }
-    66% { transform: translate(-70px, 70px) scale(0.95); opacity: 0.85; }
-    100% { transform: translate(0, 0) scale(1); opacity: 0.85; }
+@keyframes moveGlowE { 
+    0% { transform: translate(0, 0) scale(1); opacity: 1; }
+    33% { transform: translate(100px, -100px) scale(1.08); opacity: 0.92; }
+    66% { transform: translate(-120px, 120px) scale(0.92); opacity: 1; }
+    100% { transform: translate(0, 0) scale(1); opacity: 1; }
 }
 
-@keyframes moveGlowF { /* Nueva animación para orb-6 */
-    0% { transform: translate(0, 0) scale(1); opacity: 0.85; }
-    33% { transform: translate(-40px, 60px) scale(0.98); opacity: 0.86; }
-    66% { transform: translate(80px, -80px) scale(1.03); opacity: 0.89; }
-    100% { transform: translate(0, 0) scale(1); opacity: 0.85; }
+@keyframes moveGlowF { 
+    0% { transform: translate(0, 0) scale(1); opacity: 1; }
+    33% { transform: translate(-90px, 110px) scale(0.95); opacity: 0.91; }
+    66% { transform: translate(120px, -120px) scale(1.05); opacity: 0.94; }
+    100% { transform: translate(0, 0) scale(1); opacity: 1; }
 }
 
 
-/* Navbar: Fijo en la parte superior */
 .navbar {
     position: fixed;
     top: 0;
@@ -173,9 +169,8 @@ body {
     flex-wrap: wrap; 
 }
 
-/* Nuevo contenedor para el logo y el botón de filtros (principalmente para móvil) */
 .navbar-header-row {
-    display: contents; /* Por defecto, este div no crea un nuevo contexto flex */
+    display: contents;
 }
 
 .logo-link { 
@@ -209,7 +204,6 @@ body {
     transition: opacity 0.3s ease; 
 }
 
-/* Search Bar */
 .search-container {
     flex-grow: 1; 
     max-width: 500px; 
@@ -220,7 +214,7 @@ body {
     display: flex;
     align-items: center;
     transition: all 0.3s ease;
-    position: relative; /* Necesario para posicionar las sugerencias */
+    position: relative;
 }
 .search-container:focus-within { 
     background-color: rgba(255, 255, 255, 0.1);
@@ -246,18 +240,17 @@ body {
     opacity: 0.8;
 }
 
-/* Botón para limpiar el campo de búsqueda (la 'X') */
 .clear-search-btn {
     background: transparent;
     border: none;
-    color: #b0b0b0; /* Un color más suave para la X */
+    color: #b0b0b0;
     font-size: 1.2em;
     cursor: pointer;
     margin-left: 10px;
-    padding: 0 5px; /* Pequeño padding para el área de clic */
+    padding: 0 5px;
     transition: color 0.2s ease, transform 0.2s ease;
-    display: none; /* Por defecto oculto */
-    align-items: center; /* Para centrar el ícono */
+    display: none;
+    align-items: center;
     justify-content: center;
 }
 .clear-search-btn:hover {
@@ -265,21 +258,20 @@ body {
     transform: scale(1.1);
 }
 
-/* Contenedor de sugerencias de búsqueda */
 .search-suggestions {
     position: absolute;
-    top: 100%; /* Debajo del input */
+    top: 100%;
     left: 0;
     width: 100%;
-    background-color: var(--card-bg); /* Fondo oscuro como la tarjeta */
+    background-color: var(--card-bg);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-    z-index: 1001; /* Sobre el contenido principal */
-    max-height: 300px; /* Altura máxima para evitar que sea muy larga */
-    overflow-y: auto; /* Scroll si hay muchas sugerencias */
-    display: none; /* Oculto por defecto */
-    padding: 5px 0; /* Padding interno */
+    z-index: 1001;
+    max-height: 300px;
+    overflow-y: auto;
+    display: none;
+    padding: 5px 0;
 }
 .search-suggestions::-webkit-scrollbar {
     width: 8px;
@@ -303,19 +295,18 @@ body {
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 .suggestion-item:hover {
-    background-color: rgba(var(--accent-color-rgb), 0.1); /* Fondo morado suave al hover */
-    color: var(--accent-color); /* Texto morado brillante al hover */
+    background-color: rgba(var(--accent-color-rgb), 0.1);
+    color: var(--accent-color);
 }
 .suggestion-item i {
-    color: #a0a0a0; /* Color gris suave para los iconos de sugerencia */
+    color: #a0a0a0;
     font-size: 0.9em;
 }
 .suggestion-item:hover i {
-    color: var(--accent-color); /* Color morado brillante para los iconos al hover */
+    color: var(--accent-color);
 }
 
 
-/* Currency Selector */
 .currency-selector-container { 
     display: flex; 
     align-items: center; 
@@ -389,7 +380,6 @@ body {
     transform: translateY(0); 
 }
 
-/* Menú lateral de filtros (Sidebar) */
 .filter-sidebar {
     position: fixed;
     top: var(--navbar-height); 
@@ -400,14 +390,13 @@ body {
     border-right: 1px solid rgba(255, 255, 255, 0.08); 
     padding: 20px;
     padding-bottom: 80px; 
-    transform: translateX(-100%); /* Oculto por defecto en CSS, JS lo controla */
+    transform: translateX(-100%);
     transition: transform var(--sidebar-transition-duration) ease-out; 
     z-index: 1002; 
     display: flex;
     flex-direction: column;
     overflow-y: auto;
 
-    /* Ocultar barra de desplazamiento */
     -ms-overflow-style: none;  
     scrollbar-width: none;  
 }
@@ -417,7 +406,7 @@ body {
 }
 
 .filter-sidebar.open {
-    transform: translateX(0); /* Visible */
+    transform: translateX(0);
     box-shadow: 3px 0px 15px rgba(0,0,0,0.2); 
 }
 
@@ -480,7 +469,6 @@ body {
     background-color: #c000d6; 
 }
 
-/* Sección de filtros de precio dentro de la sidebar */
 .price-filter-section {
     margin-top: 20px;
     padding-top: 20px;
@@ -524,7 +512,6 @@ body {
     text-align: right;
 }
 
-/* Estilos para el input de tipo "range" (sliders) */
 input[type="range"] {
     -webkit-appearance: none; 
     width: 100%;
@@ -584,7 +571,6 @@ input[type="range"]::-moz-range-track {
     border-radius: 5px;
 }
 
-/* Estilo para el botón de reseteo */
 .reset-price-btn {
     background-color: transparent;
     border: 1px solid rgba(var(--accent-color-rgb), 0.5);
@@ -604,7 +590,6 @@ input[type="range"]::-moz-range-track {
     border-color: var(--accent-color);
 }
 
-/* Botón de CIERRE DENTRO de la Sidebar */
 .sidebar-close-btn { 
     background-color: var(--accent-color);
     color: var(--primary-bg);
@@ -614,7 +599,7 @@ input[type="range"]::-moz-range-track {
     font-size: 1em;
     font-weight: 600;
     cursor: pointer;
-    display: none; /* Controlado por JS para mostrarse cuando la sidebar está abierta */
+    display: none;
     align-items: center;
     justify-content: center;
     gap: 8px;
@@ -626,7 +611,6 @@ input[type="range"]::-moz-range-track {
     background-color: #c000d6;
 }
 
-/* Botón de ABRIR Sidebar (Ahora dentro del navbar) */
 .sidebar-open-btn {
     background-color: var(--accent-color);
     color: var(--primary-bg);
@@ -637,17 +621,12 @@ input[type="range"]::-moz-range-track {
     font-size: 1em;
     font-weight: 600;
     cursor: pointer;
-    display: flex; 
+    display: flex; /* Visible por defecto en CSS, JS lo ocultará en PC y lo manejará en móvil */
     align-items: center;
     justify-content: center;
     gap: 8px;
     box-shadow: 0 4px 15px rgba(var(--accent-color-rgb), 0.3);
     transition: transform 0.2s ease, background-color 0.2s ease, opacity 0.3s ease, box-shadow 0.2s ease;
-}
-/* Por defecto (en escritorio), el botón de abrir filtros NO SE MUESTRA.
-   En escritorio, la barra lateral de filtros está visible por defecto o según la preferencia del usuario. */
-.navbar-header-row .sidebar-open-btn {
-    display: none; /* Oculto en escritorio */
 }
 .sidebar-open-btn:hover {
     transform: scale(1.05);
@@ -656,15 +635,14 @@ input[type="range"]::-moz-range-track {
 }
 
 
-/* Contenedor principal que se desplazará */
 .page-content-wrapper { 
-    margin-top: var(--navbar-height); /* Se ajusta con JS según el tamaño del navbar */
+    margin-top: var(--navbar-height);
     margin-left: 0; 
     transition: margin-left var(--sidebar-transition-duration) ease-out, 
                 width var(--sidebar-transition-duration) ease-out; 
     display: flex; 
     flex-direction: column;
-    min-height: calc(100vh - var(--navbar-height)); /* Se ajusta con JS */
+    min-height: calc(100vh - var(--navbar-height)); 
     width: 100vw; 
     position: relative; 
 }
@@ -673,8 +651,6 @@ input[type="range"]::-moz-range-track {
     width: calc(100vw - var(--sidebar-width)); 
 }
 
-
-/* Product Grid & Cards */
 .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); 
@@ -751,21 +727,20 @@ input[type="range"]::-moz-range-track {
     flex-grow: 1; 
 }
 .features-list li { 
-    padding-left: 1.3em; /* Mantiene el espacio para el icono */
+    padding-left: 1.5em; /* Aumentado para dar espacio a la estrellita */
     position: relative; 
     margin-bottom: 6px; 
     line-height: 1.4; 
 }
-.features-list li::before { /* Este es el que añade el icono */
+.features-list li::before { 
     content: '✦'; 
     position: absolute; 
     left: 0; 
     color: var(--accent-color); 
-    font-size: 0.9em; 
-    top: 1px; 
+    font-size: 1.2em; /* Aumentado para que sea más visible */
+    top: 0; /* Ajustado para mejor alineación vertical */
 }
 
-/* Product Card Actions (Buttons) */
 .product-card-actions { 
     display: flex; 
     align-items: center; 
@@ -820,7 +795,6 @@ input[type="range"]::-moz-range-track {
     box-shadow: 0 4px 10px rgba(0, 48, 135, 0.4); 
 }
 
-/* Footer */
 .footer { 
     text-align: center; 
     padding: 30px 20px; 
@@ -845,7 +819,6 @@ input[type="range"]::-moz-range-track {
     transform: translateY(-3px) scale(1.1); 
 }
 
-/* Media Queries */
 @media (max-width: 1024px) { 
     .product-grid { 
         grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
@@ -855,42 +828,38 @@ input[type="range"]::-moz-range-track {
 @media (max-width: 768px) {
     :root { --sidebar-width: 260px; } 
 
-    /* Navbar en mobile: ahora se apila y el botón de filtros está en la fila superior */
     .navbar { 
-        position: static; /* Ya no es fijo, para que el contenido se desplace */
-        flex-direction: column; /* Apila los elementos principales: header-row, search, currency */
+        position: static;
+        flex-direction: column;
         gap: 15px; 
         padding: 15px 20px; 
-        align-items: center; /* Centra los elementos horizontalmente */
+        align-items: center; 
     }
     
-    /* Nueva fila de cabecera para móviles: logo a la izquierda, botón de filtros a la derecha */
     .navbar-header-row {
-        display: flex; /* Activa el flex para esta fila */
-        justify-content: space-between; /* Empuja logo y botón a los extremos */
+        display: flex;
+        justify-content: space-between;
         align-items: center;
-        width: 100%; /* Ocupa todo el ancho disponible en la navbar */
-        margin-bottom: 15px; /* Espacio debajo de esta fila */
+        width: 100%;
+        margin-bottom: 15px; 
     }
 
     .logo-v { font-size: 2.8rem; } 
     .store-name { font-size: 1.5rem; } 
     
-    /* Mostrar el botón de filtros en el navbar para móviles */
     .navbar-header-row .sidebar-open-btn {
-        display: flex; /* Hace visible el botón */
-        height: 45px; /* Altura específica para el botón */
-        box-shadow: none; /* Quita la sombra para que se integre mejor en la cabecera */
-        margin-left: 10px; /* Pequeño espacio a la izquierda del botón */
-        transform: none; /* Deshabilita el efecto de escala al pasar el ratón */
-        padding: 8px 12px; /* Ajuste de padding */
-        font-size: 0.95em; /* Ajuste de fuente */
+        display: flex; /* Visible EN MÓVIL */
+        height: 45px;
+        box-shadow: none; 
+        margin-left: 10px; 
+        transform: none; 
+        padding: 8px 12px; 
+        font-size: 0.95em; 
     }
     .navbar-header-row .sidebar-open-btn:hover {
-        background-color: #c000d6; /* Mantiene el color de hover */
-        box-shadow: none; /* Asegura que no haya sombra al pasar el ratón */
+        background-color: #c000d6; 
+        box-shadow: none; 
     }
-    /* El logo-link se asegura de que quede a la izquierda de la fila */
     .logo-link {
         margin-right: auto;
     }
@@ -898,9 +867,9 @@ input[type="range"]::-moz-range-track {
     .currency-selector-container { 
         padding: 6px 10px;
         position: static; 
-        width: 100%; /* Ocupa todo el ancho disponible */
+        width: 100%; 
         max-width: 100%;
-        justify-content: center; /* Centra el contenido del selector de moneda */
+        justify-content: center; 
     }
     .currency-selector-container::before { 
         display: none; 
@@ -911,19 +880,16 @@ input[type="range"]::-moz-range-track {
         max-width: 100%;
     }
 
-    /* Sidebar en mobile: overlay de altura completa */
     .filter-sidebar {
-        top: 0; /* Empieza desde la parte superior de la ventana */
-        height: 100vh; /* Ocupa toda la altura de la ventana */
+        top: 0;
+        height: 100vh;
     }
     
-    /* Contenido principal ya no necesita margin-top del navbar fijo */
     .page-content-wrapper {
-        margin-top: 0; /* El navbar ya no es fijo, no empuja el contenido */
+        margin-top: 0;
         min-height: 100vh; 
         width: 100vw; 
     }
-    /* El sidebar se abre como un overlay de pantalla completa, no desplaza el contenido */
     .page-content-wrapper.shifted {
         margin-left: 0; 
     }
@@ -986,7 +952,6 @@ input[type="range"]::-moz-range-track {
         gap: 10px; 
     }
     .product-card { padding: 15px; }
-    .product-card img { max-width: 90%; }
     .features-list li { font-size: 0.85em; } 
     .add-to-cart-btn { font-size: 0.85em; } 
 }
