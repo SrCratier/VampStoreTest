@@ -15,8 +15,8 @@
         <div class="orb orb-2"></div>
         <div class="orb orb-3"></div>
         <div class="orb orb-4"></div>
-        <div class="orb orb-5"></div> <!-- Nueva orbe 5 -->
-        <div class="orb orb-6"></div> <!-- Nueva orbe 6 -->
+        <div class="orb orb-5"></div>
+        <div class="orb orb-6"></div>
     </div>
 
     <!-- Navbar: Fijo en la parte superior -->
@@ -29,8 +29,7 @@
                     <h1 class="store-name">amp Store</h1>
                 </div>
             </a>
-            <!-- Botón de ABRIR FUERA de la Sidebar, DENTRO del wrapper pero fixed -->
-            <!-- MOVIDO AQUÍ DESDE page-content-wrapper -->
+            <!-- Botón de ABRIR Sidebar -->
             <button id="sidebar-open-btn" class="sidebar-open-btn" aria-label="Abrir filtros">
                 <i class="fas fa-filter"></i> <span>Filtros</span>
             </button>
@@ -288,7 +287,6 @@
         const navbar = document.querySelector('.navbar'); 
         const root = document.documentElement; 
 
-        // Lista de sugerencias (categorías principales) extraídas de los data-filter de los botones de filtro
         const suggestionsList = [
             'Spotify', 'Disney+', 'HBO Max', 'Prime Video', 'Netflix', 'Crunchyroll'
         ];
@@ -297,17 +295,16 @@
             const navbarHeight = navbar.offsetHeight; 
             root.style.setProperty('--navbar-height', `${navbarHeight}px`);
             
-            // Ajustar la posición y altura de la sidebar y el wrapper según el tamaño de la ventana
-            if (window.innerWidth <= 768) { // Móvil
-                pageContentWrapper.style.marginTop = '0'; // Navbar estático, no necesita margen superior
-                pageContentWrapper.style.minHeight = '100vh'; // Altura completa de la ventana
-                filterSidebar.style.top = '0'; // Sidebar inicia desde la parte superior de la ventana
-                filterSidebar.style.height = '100vh'; // Sidebar ocupa toda la altura
-            } else { // Escritorio
-                pageContentWrapper.style.marginTop = `var(--navbar-height)`; // Margen para el navbar fijo
-                pageContentWrapper.style.minHeight = `calc(100vh - var(--navbar-height))`; // Resto de la altura
-                filterSidebar.style.top = `var(--navbar-height)`; // Sidebar inicia debajo del navbar
-                filterSidebar.style.height = `calc(100vh - var(--navbar-height))`; // Resto de la altura
+            if (window.innerWidth <= 768) { 
+                pageContentWrapper.style.marginTop = '0'; 
+                pageContentWrapper.style.minHeight = '100vh'; 
+                filterSidebar.style.top = '0'; 
+                filterSidebar.style.height = '100vh'; 
+            } else { 
+                pageContentWrapper.style.marginTop = `var(--navbar-height)`; 
+                pageContentWrapper.style.minHeight = `calc(100vh - var(--navbar-height))`; 
+                filterSidebar.style.top = `var(--navbar-height)`; 
+                filterSidebar.style.height = `calc(100vh - var(--navbar-height))`; 
             }
         }
 
@@ -385,17 +382,12 @@
                 const cardTitle = card.querySelector('h3').textContent.toLowerCase(); 
                 const cardDuration = card.querySelector('.duration').textContent.toLowerCase();
 
-                // Check for category match (from filter buttons)
                 const isCategoryMatch = activeFilters.includes('all') || activeFilters.includes(cardCategory);
-                
-                // Check for price match
                 const isPriceMatch = (cardPriceUSD >= currentMinPriceUSD && cardPriceUSD <= currentMaxPriceUSD);
-                
-                // Check for search match against title, duration, and category
                 const isSearchMatch = (searchLower === '' || 
                                        cardTitle.includes(searchLower) ||
                                        cardDuration.includes(searchLower) ||
-                                       cardCategory.includes(searchLower)); // Also search in category data
+                                       cardCategory.includes(searchLower));
 
                 if (isCategoryMatch && isPriceMatch && isSearchMatch) { 
                     card.style.display = 'flex';
@@ -437,7 +429,6 @@
             });
         });
 
-        // --- Búsqueda y Sugerencias ---
         searchInput.addEventListener('input', function() {
             currentSearchQuery = this.value.trim(); 
             applyFilters(); 
@@ -450,7 +441,6 @@
         });
 
         searchInput.addEventListener('blur', function() {
-            // Retrasa el ocultamiento para permitir clics en las sugerencias
             setTimeout(() => {
                 searchSuggestions.innerHTML = '';
                 searchSuggestions.style.display = 'none';
@@ -462,14 +452,14 @@
             currentSearchQuery = '';
             applyFilters();
             toggleClearSearchButton();
-            searchSuggestions.innerHTML = ''; // Limpia sugerencias al limpiar
+            searchSuggestions.innerHTML = '';
             searchSuggestions.style.display = 'none';
-            searchInput.focus(); // Opcional: enfocar el input de nuevo
+            searchInput.focus(); 
         });
 
         function toggleClearSearchButton() {
             if (searchInput.value.length > 0) {
-                clearSearchBtn.style.display = 'flex'; // Usar flex para centrar el icono
+                clearSearchBtn.style.display = 'flex'; 
             } else {
                 clearSearchBtn.style.display = 'none';
             }
@@ -477,8 +467,8 @@
 
         function showSuggestions() {
             const query = searchInput.value.toLowerCase();
-            searchSuggestions.innerHTML = ''; // Limpiar sugerencias anteriores
-            searchSuggestions.style.display = 'none'; // Ocultar por defecto
+            searchSuggestions.innerHTML = ''; 
+            searchSuggestions.style.display = 'none'; 
 
             if (query.length === 0) {
                 return;
@@ -502,22 +492,20 @@
                     suggestionItem.appendChild(icon);
                     suggestionItem.appendChild(textSpan);
 
-                    suggestionItem.addEventListener('mousedown', function(event) { // Usar mousedown para que se dispare antes que blur
-                        event.preventDefault(); // Previene que el input pierda el foco
+                    suggestionItem.addEventListener('mousedown', function(event) { 
+                        event.preventDefault(); 
                         searchInput.value = suggestion;
                         currentSearchQuery = suggestion.toLowerCase();
                         applyFilters();
                         searchSuggestions.innerHTML = '';
                         searchSuggestions.style.display = 'none';
-                        toggleClearSearchButton(); // Actualiza visibilidad de la X
+                        toggleClearSearchButton(); 
                     });
                     searchSuggestions.appendChild(suggestionItem);
                 });
-                searchSuggestions.style.display = 'block'; // Mostrar contenedor de sugerencias
+                searchSuggestions.style.display = 'block'; 
             }
         }
-        // --- Fin Búsqueda y Sugerencias ---
-
 
         minPriceSlider.addEventListener('input', function() {
             if (parseFloat(minPriceSlider.value) > parseFloat(maxPriceSlider.value)) {
@@ -544,25 +532,16 @@
             if (open) {
                 filterSidebar.classList.add('open');
                 pageContentWrapper.classList.add('shifted'); 
-                // Asegurarse de que el botón de cerrar esté visible
                 if(sidebarCloseBtn) sidebarCloseBtn.style.display = 'flex'; 
-
-                // Si está en móvil, ocultar el botón de abrir al abrir la sidebar
-                if (window.innerWidth <= 768 && sidebarOpenBtn) {
-                    sidebarOpenBtn.style.display = 'none';
-                }
-
+                // Ocultar el botón de abrir la sidebar cuando la sidebar está abierta
+                if (sidebarOpenBtn) sidebarOpenBtn.style.display = 'none';
                 localStorage.setItem('sidebarState', 'open');
             } else {
                 filterSidebar.classList.remove('open');
                 pageContentWrapper.classList.remove('shifted'); 
-                // Asegurarse de que el botón de cerrar esté oculto
                 if(sidebarCloseBtn) sidebarCloseBtn.style.display = 'none'; 
-
-                // Si está en móvil, mostrar el botón de abrir al cerrar la sidebar
-                if (window.innerWidth <= 768 && sidebarOpenBtn) {
-                    sidebarOpenBtn.style.display = 'flex';
-                }
+                // Mostrar el botón de abrir la sidebar cuando la sidebar está cerrada
+                if (sidebarOpenBtn) sidebarOpenBtn.style.display = 'flex';
                 localStorage.setItem('sidebarState', 'closed');
             }
         }
@@ -574,35 +553,27 @@
             sidebarCloseBtn.addEventListener('click', () => toggleSidebar(false));
         }
         
-        // Ejecutar al cargar y al redimensionar para asegurar el posicionamiento correcto
         updateNavbarHeightCssVariable(); 
         window.addEventListener('resize', updateNavbarHeightCssVariable); 
 
         // Lógica de apertura de la sidebar al cargar la página:
-        // En escritorio: la sidebar debe estar abierta por defecto, SIEMPRE.
-        // En móvil: la sidebar debe estar cerrada por defecto, a menos que el usuario la haya abierto explícitamente.
         const savedSidebarState = localStorage.getItem('sidebarState');
         if (window.innerWidth > 768) { // Lógica para escritorio
-            // Siempre abre la sidebar en escritorio al cargar la página
-            // independientemente de si el usuario la cerró antes en otra sesión.
-            // La única forma de cerrarla en escritorio es recargar la página con un estado 'closed'.
-            toggleSidebar(true); 
+            toggleSidebar(true); // Siempre abre la sidebar en escritorio
         } else { // Lógica para móvil
-            // En móvil, sí respetamos la preferencia guardada:
-            if (savedSidebarState === 'open') { // Solo abrir si se guardó explícitamente como 'open'
+            if (savedSidebarState === 'open') { 
                 toggleSidebar(true);
-            } else { // Por defecto, estará cerrada en móvil
+            } else { 
                 toggleSidebar(false);
             }
         }
-
 
         if (currencySelector) {  currencySelector.addEventListener('change', updatePrices); updatePrices();  } 
         
         resetPriceFilters(); 
         updateFilterButtonsUI();
         applyFilters(); 
-        toggleClearSearchButton(); // Inicializa el botón de limpiar
+        toggleClearSearchButton(); 
 
         let activeCard = null;
         productCards.forEach(card => { card.addEventListener('click', function(event) { if (activeCard && activeCard !== this) { activeCard.classList.remove('product-card--active'); } this.classList.add('product-card--active'); activeCard = this; event.stopPropagation(); }); });
