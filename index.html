@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vamp Store - Cuentas Premium</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Elemento para la animación de fondo -->
+    <div class="background-animation-layer">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="orb orb-4"></div>
+        <div class="orb orb-5"></div>
+        <div class="orb orb-6"></div>
+    </div>
+
+    <!-- Navbar: Fijo en la parte superior -->
+    <header class="navbar">
+        <!-- Nuevo contenedor para el logo y el botón de filtros en móvil -->
+        <div class="navbar-header-row">
+            <a href="https://vampclub.shop/" target="_blank" rel="noopener noreferrer" class="logo-link">
+                <div class="logo-container">
+                    <span class="logo-v">V</span>
+                    <h1 class="store-name">amp Store</h1>
+                </div>
+            </a>
+            <!-- Botón de ABRIR Sidebar -->
+            <button id="sidebar-open-btn" class="sidebar-open-btn" aria-label="Abrir filtros">
+                <i class="fas fa-filter"></i> <span>Filtros</span>
+            </button>
+        </div>
+        <!-- Barra de búsqueda -->
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="search-input" placeholder="Buscar productos..." aria-label="Buscar productos por nombre">
+            <!-- Botón para limpiar el campo de búsqueda -->
+            <button id="clear-search-btn" class="clear-search-btn" aria-label="Limpiar búsqueda">
+                <i class="fas fa-times"></i>
+            </button>
+            <!-- Contenedor para sugerencias de búsqueda -->
+            <div id="search-suggestions" class="search-suggestions">
+                <!-- Las sugerencias se añadirán aquí dinámicamente -->
+            </div>
+        </div>
+        <div class="currency-selector-container">
+            <i class="fas fa-coins currency-icon"></i>
+            <select id="currency-selector" aria-label="Seleccionar Moneda">
+                <!-- Opciones llenadas con JS -->
+            </select>
+        </div>
+    </header>
+
+    <!-- Menú lateral de filtros (Sidebar): Fijo a la izquierda, debajo del navbar -->
+    <aside id="filter-sidebar" class="filter-sidebar" aria-labelledby="filter-sidebar-heading">
+        <div class="filter-sidebar-header">
+            <h2 id="filter-sidebar-heading">Filtrar Servicios</h2>
+        </div>
+        <nav class="filter-nav">
+            <button class="filter-btn" data-filter="all"><i class="fas fa-asterisk"></i> Todos</button>
+            <button class="filter-btn" data-filter="spotify"><i class="fab fa-spotify"></i> Spotify</button>
+            <button class="filter-btn" data-filter="disney"><i class="fas fa-magic"></i> Disney+</button>
+            <button class="filter-btn" data-filter="hbo"><i class="fas fa-film"></i> HBO Max</button>
+            <button class="filter-btn" data-filter="primevideo"><i class="fab fa-amazon"></i> Prime Video</button>
+            <button class="filter-btn" data-filter="netflix"><i class="fas fa-tv"></i> Netflix</button>
+            <button class="filter-btn" data-filter="crunchyroll"><i class="fas fa-bolt"></i> Crunchyroll</button>
+        </nav>
+
+        <!-- Sección de filtros de precio -->
+        <div class="price-filter-section">
+            <h3 class="price-filter-heading">FILTRAR POR PRECIO</h3>
+            <p class="current-price-range"><span id="overall-min-price-display"></span> - <span id="overall-max-price-display"></span></p>
+
+            <div class="slider-group">
+                <label for="min-price-slider">Mínimo: <span id="min-price-value"></span></label>
+                <input type="range" id="min-price-slider" min="0" max="40" value="0" step="0.1">
+            </div>
+
+            <div class="slider-group">
+                <label for="max-price-slider">Máximo: <span id="max-price-value"></span></label>
+                <input type="range" id="max-price-slider" min="0" max="40" value="40" step="0.1">
+            </div>
+
+            <button id="reset-price-filters" class="reset-price-btn">Resetear Filtros</button>
+        </div>
+        <!-- Fin Sección de filtros de precio -->
+
+        <!-- Botón de CIERRE DENTRO de la Sidebar -->
+        <button id="sidebar-close-btn" class="sidebar-toggle-btn sidebar-close-btn" aria-label="Cerrar filtros">
+            <i class="fas fa-chevron-left"></i> <span>Cerrar Filtros</span>
+        </button>
+    </aside>
+
+    <!-- Contenedor principal que se desplazará -->
+    <div class="page-content-wrapper" id="page-content-wrapper">
+        <main class="product-grid">
+            <!-- PRODUCTOS SPOTIFY -->
+            <div class="product-card" data-category="spotify"> <img src="images/spotify1.png" alt="Spotify Premium"> <h3>Spotify Premium</h3> <p class="duration">1 Mes</p> <p class="initial-description">Spotify Premium por 30 Días.</p> <p class="price" data-price-usd="2.00">$2.00</p> <ul class="features-list"><li>Millones de canciones sin anuncios!</li><li>Sin APKs ni programas externos.</li><li>Descarga y escucha música sin conexión.</li><li>Reproducción mejorada para una mejor inmersión.</li><li>Garantía por 30 Días.</li></ul> <div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a><a href="https://www.paypal.com/ncp/payment/9G2X4VBUGW62S" target="_blank" rel="noopener noreferrer" class="paypal-btn" aria-label="Pagar con PayPal"><i class="fab fa-paypal"></i></a></div> </div>
+            <div class="product-card" data-category="spotify"> <img src="images/spotify2.png" alt="Spotify Premium"> <h3>Spotify Premium</h3> <p class="duration">2 Meses</p> <p class="initial-description">Spotify Premium por 60 Días.</p> <p class="price" data-price-usd="3.50">$3.50</p> <ul class="features-list"><li>Millones de canciones sin anuncios!</li><li>Sin APKs ni programas externos.</li><li>Descarga y escucha música sin conexión.</li><li>Reproducción mejorada para una mejor inmersión.</li><li>Garantía por 60 Días.</li></ul> <div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a><a href="https://www.paypal.com/ncp/payment/33PWTYTE9AW5E" target="_blank" rel="noopener noreferrer" class="paypal-btn" aria-label="Pagar con PayPal"><i class="fab fa-paypal"></i></a></div> </div>
+            <div class="product-card" data-category="spotify"> <img src="images/spotify3.png" alt="Spotify Premium"> <h3>Spotify Premium</h3> <p class="duration">3 Meses</p> <p class="initial-description">Spotify Premium por 90 Días.</p> <p class="price" data-price-usd="5.25">$5.25</p> <ul class="features-list"><li>Millones de canciones sin anuncios!</li><li>Sin APKs ni programas externos.</li><li>Descarga y escucha música sin conexión.</li><li>Activación vía login, segura, rápida y totalmente personal.</li><li>Garantía por 90 Días.</li></ul> <div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a><a href="https://www.paypal.com/ncp/payment/X435J8L4J92Q2" target="_blank" rel="noopener noreferrer" class="paypal-btn" aria-label="Pagar con PayPal"><i class="fab fa-paypal"></i></a></div> </div>
+            <div class="product-card" data-category="spotify"> <img src="images/spotify4.png" alt="Spotify Premium"> <h3>Spotify Premium</h3> <p class="duration">6 Meses</p> <p class="initial-description">Spotify Premium por 180 Días.</p> <p class="price" data-price-usd="9.80">$9.80</p> <ul class="features-list"><li>Millones de canciones sin anuncios!</li><li>Sin APKs ni programas externos.</li><li>Descarga y escucha música sin conexión.</li><li>Activación vía login, segura, rápida y totalmente personal.</li><li>Garantía por 180 Días.</li></ul> <div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a><a href="https://www.paypal.com/ncp/payment/YTW49RHJUZQBJ" target="_blank" rel="noopener noreferrer" class="paypal-btn" aria-label="Pagar con PayPal"><i class="fab fa-paypal"></i></a></div> </div>
+            <div class="product-card" data-category="spotify"> <img src="images/spotify1.png" alt="Spotify Premium"> <h3>Spotify Premium</h3> <p class="duration">12 Meses</p> <p class="initial-description">Spotify Premium por 365 Días.</p> <p class="price" data-price-usd="18.90">$18.90</p> <ul class="features-list"><li>Millones de canciones sin anuncios!</li><li>Sin APKs ni programas externos.</li><li>Descarga y escucha música sin conexión.</li><li>Activación vía login, segura, rápida y totalmente personal.</li><li>Garantía por 365 Días.</li></ul> <div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a><a href="https://www.paypal.com/ncp/payment/3L4FRRXU6WVZ8" target="_blank" rel="noopener noreferrer" class="paypal-btn" aria-label="Pagar con PayPal"><i class="fab fa-paypal"></i></a></div> </div>
+            
+            <!-- PRODUCTOS SPOTIFY PREMIUM FAMILIAR (NUEVOS Y ACTUALIZADO) -->
+            <!-- Spotify Premium Familiar 12 Meses Familiar (Imagen actualizada) -->
+            <div class="product-card" data-category="spotify"> <img src="images/spotifyfam.png" alt="Spotify Premium Familiar"> <h3>Spotify Premium Familiar</h3> <p class="duration">12 Meses Familiar</p> <p class="initial-description">Spotify Premium Familiar por 365 Días.</p> <p class="price" data-price-usd="37.80">$37.80</p> <ul class="features-list"><li>Todo lo del Premium Individual para hasta 6 cuentas.</li><li>Millones de canciones sin anuncios!</li><li>Sin APKs ni programas externos.</li><li>Descarga y escucha música sin conexión.</li><li>Reproducción mejorada para una mejor inmersión.</li><li>Garantía por 365 Días.</li></ul> <div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a><a href="https://www.paypal.com/ncp/payment/KACWZREB62RMC" target="_blank" rel="noopener noreferrer" class="paypal-btn" aria-label="Pagar con PayPal"><i class="fab fa-paypal"></i></a></div> </div>
+
+            <!-- Spotify Premium Familiar 6 Meses Familiar (NUEVO) -->
+            <div class="product-card" data-category="spotify"> <img src="images/spotifyfam.png" alt="Spotify Premium Familiar"> <h3>Spotify Premium Familiar</h3> <p class="duration">6 Meses Familiar</p> <p class="initial-description">Spotify Premium Familiar por 180 Días.</p> <p class="price" data-price-usd="26.75">$26.75</p> <ul class="features-list"><li>Todo lo del Premium Individual para hasta 6 cuentas.</li><li>Millones de canciones sin anuncios!</li><li>Sin APKs ni programas externos.</li><li>Descarga y escucha música sin conexión.</li><li>Reproducción mejorada para una mejor inmersión.</li><li>Garantía por 180 Días.</li></ul> <div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a><a href="https://www.paypal.com/ncp/payment/RFR8UX9S48BSY" target="_blank" rel="noopener noreferrer" class="paypal-btn" aria-label="Pagar con PayPal"><i class="fab fa-paypal"></i></a></div> </div>
+
+            <!-- Spotify Premium Familiar 3 Meses Familiar (NUEVO) -->
+            <div class="product-card" data-category="spotify"> <img src="images/spotifyfam.png" alt="Spotify Premium Familiar"> <h3>Spotify Premium Familiar</h3> <p class="duration">3 Meses Familiar</p> <p class="initial-description">Spotify Premium Familiar por 90 Días.</p> <p class="price" data-price-usd="19.75">$19.75</p> <ul class="features-list"><li>Todo lo del Premium Individual para hasta 6 cuentas.</li><li>Millones de canciones sin anuncios!</li><li>Sin APKs ni programas externos.</li><li>Descarga y escucha música sin conexión.</li><li>Reproducción mejorada para una mejor inmersión.</li><li>Garantía por 90 Días.</li></ul> <div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a><a href="https://www.paypal.com/ncp/payment/T3W73TQXP446Q" target="_blank" rel="noopener noreferrer" class="paypal-btn" aria-label="Pagar con PayPal"><i class="fab fa-paypal"></i></a></div> </div>
+
+
+            <!-- PRODUCTOS DISNEY -->
+            <div class="product-card" data-category="disney"><img src="images/disney1.png" alt="Disney+"><h3>Disney+</h3><p class="duration">12 Meses Cuenta Completa</p><p class="initial-description">Todos los perfiles disponibles.</p><p class="price" data-price-usd="14.00">$14.00</p><ul class="features-list">
+                <li>Acceso ilimitado a Disney, Pixar, Marvel, Star Wars y Nat Geo.</li>
+                <li>Películas y series exclusivas, incluyendo Originals.</li>
+                <li>Calidad de streaming hasta 4K UHD y HDR.</li>
+                <li>Descargas ilimitadas para ver sin conexión.</li>
+                <li>Con garantía.</li>
+            </ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
+            <div class="product-card" data-category="disney"><img src="images/disney1.png" alt="Disney+ Perfil"><h3>Disney+</h3><p class="duration">12 Meses Perfil</p><p class="initial-description">Perfil privado con PIN.</p><p class="price" data-price-usd="4.00">$4.00</p><ul class="features-list">
+                <li>Perfil privado con PIN personal.</li>
+                <li>Acceso ilimitado a un vasto catálogo de entretenimiento.</li>
+                <li>Contenido en alta calidad.</li>
+                <li>Descargas para ver offline.</li>
+                <li>Con garantía.</li>
+            </ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
+            <div class="product-card" data-category="disney"><img src="images/disney1.png" alt="Disney+"><h3>Disney+</h3><p class="duration">3 Meses Cuenta Completa</p><p class="initial-description">Todos los perfiles disponibles.</p><p class="price" data-price-usd="7.75">$7.75</p><ul class="features-list">
+                <li>Acceso ilimitado a Disney, Pixar, Marvel, Star Wars y Nat Geo.</li>
+                <li>Películas y series exclusivas, incluyendo Originals.</li>
+                <li>Calidad de streaming hasta 4K UHD y HDR.</li>
+                <li>Descargas ilimitadas para ver sin conexión.</li>
+                <li>Con garantía.</li>
+            </ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
+            <div class="product-card" data-category="disney"><img src="images/disney1.png" alt="Disney+ Perfil"><h3>Disney+</h3><p class="duration">3 Meses Perfil</p><p class="initial-description">Perfil privado con PIN.</p><p class="price" data-price-usd="2.00">$2.00</p><ul class="features-list">
+                <li>Perfil privado con PIN personal.</li>
+                <li>Acceso ilimitado a un vasto catálogo de entretenimiento.</li>
+                <li>Contenido en alta calidad.</li>
+                <li>Descargas para ver offline.</li>
+                <li>Con garantía.</li>
+            </ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
+
+            <!-- PRODUCTOS HBO MAX -->
+            <div class="product-card" data-category="hbo"><img src="images/hbo1.png" alt="HBO Max"><h3>HBO Max</h3><p class="duration">12 Meses Cuenta Completa</p><p class="initial-description">Todos los perfiles disponibles.</p><p class="price" data-price-usd="10.00">$10.00</p><ul class="features-list">
+                <li>Acceso al extenso catálogo de películas y series de HBO.</li>
+                <li>Contenido de Warner Bros., DC, Cartoon Network y más.</li>
+                <li>Streaming en alta definición, incluyendo 4K UHD.</li>
+                <li>Perfiles de usuario personalizados para cada miembro.</li>
+                <li>Descarga tus series y películas favoritas para ver offline.</li>
+                <li>Con garantía.</li>
+            </ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
+            <div class="product-card" data-category="hbo"><img src="images/hbo1.png" alt="HBO Max Perfil"><h3>HBO Max</h3><p class="duration">12 Meses Perfil</p><p class="initial-description">Perfil privado con PIN.</p><p class="price" data-price-usd="4.50">$4.50</p><ul class="features-list">
+                <li>Perfil privado con PIN personal.</li>
+                <li>Acceso al catálogo de HBO Max.</li>
+                <li>Contenido en alta definición.</li>
+                <li>Descargas disponibles.</li>
+                <li>Con garantía.</li>
+            </ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
+            
+            <!-- PRODUCTOS PRIME VIDEO -->
+            <div class="product-card" data-category="primevideo"><img src="images/primevideo1.png" alt="Prime Video"><h3>Prime Video</h3><p class="duration">12 Meses Cuenta Completa</p><p class="initial-description">Todos los perfiles disponibles.</p><p class="price" data-price-usd="8.00">$8.00</p><ul class="features-list">
+                <li>Amplia selección de películas y series exclusivas.</li>
+                <li>Contenido Amazon Originals premiado.</li>
+                <li>Streaming en calidad 4K UHD incluida.</li>
+                <li>Perfiles de usuario personalizados para toda la familia.</li>
+                <li>Descarga tu contenido favorito para ver sin conexión.</li>
+                <li>Con garantía.</li>
+            </ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
+            <div class="product-card" data-category="primevideo"><img src="images/primevideo1.png" alt="Prime Video Perfil"><h3>Prime Video</h3><p class="duration">12 Meses Perfil</p><p class="initial-description">Perfil privado con PIN.</p><p class="price" data-price-usd="4.00">$4.00</p><ul class="features-list">
+                <li>Perfil privado con PIN personal.</li>
+                <li>Acceso al catálogo de Prime Video.</li>
+                <li>Contenido en alta calidad.</li>
+                <li>Descargas para ver offline.</li>
+                <li>Con garantía.</li>
+            </ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
+            <div class="product-card" data-category="primevideo"><img src="images/primevideo1.png" alt="Prime Video"><h3>Prime Video</h3><p class="duration">6 Meses Cuenta Completa</p><p class="initial-description">Todos los perfiles disponibles.</p><p class="price" data-price-usd="5.75">$5.75</p><ul class="features-list">
+                <li>Amplia selección de películas y series exclusivas.</li>
+                <li>Contenido Amazon Originals premiado.</li>
+                <li>Streaming en calidad 4K UHD incluida.</li>
+                <li>Perfiles de usuario personalizados para toda la familia.</li>
+                <li>Descarga tu contenido favorito para ver sin conexión.</li>
+                <li>Con garantía.</li>
+            </ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
+            <div class="product-card" data-category="primevideo"><img src="images/primevideo1.png" alt="Prime Video"><h3>Prime Video</h3><p class="duration">3 Meses Cuenta Completa</p><p class="initial-description">Todos los perfiles disponibles.</p><p class="price" data-price-usd="3.75">$3.75</p><ul class="features-list">
+                <li>Amplia selección de películas y series exclusivas.</li>
+                <li>Contenido Amazon Originals premiado.</li>
+                <li>Streaming en calidad 4K UHD incluida.</li>
+                <li>Perfiles de usuario personalizados para toda la familia.</li>
+                <li>Descarga tu contenido favorito para ver sin conexión.</li>
+                <li>Con garantía.</li>
+            </ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
+            <div class="product-card" data-category="primevideo"><img src="images/primevideo1.png" alt="Prime Video"><h3>Prime Video</h3><p class="duration">1 Mes Cuenta Completa</p><p class="initial-description">Todos los perfiles disponibles.</p><p class="price" data-price-usd="2.00">$2.00</p><ul class="features-list">
+                <li>Amplia selección de películas y series exclusivas.</li>
+                <li>Contenido Amazon Originals premiado.</li>
+                <li>Streaming en calidad 4K UHD incluida.</li>
+                <li>Perfiles de usuario personalizados para toda la familia.</li>
+                <li>Descarga tu contenido favorito para ver sin conexión.</li>
+                <li>Con garantía.</li>
+            </ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
+
+            <!-- PRODUCTOS NETFLIX -->
+            <div class="product-card" data-category="netflix"><img src="images/netflix1.png" alt="Netflix"><h3>Netflix</h3><p class="duration">1 Mes Cuenta Completa</p><p class="initial-description">Todos los perfiles disponibles.</p><p class="price" data-price-usd="9.00">$9.00</p><ul class="features-list">
+                <li>Acceso ilimitado a miles de películas, series y documentales.</li>
+                <li>Contenido exclusivo y original de Netflix.</li>
+                <li>Resolución Ultra HD (4K) para una experiencia inmersiva.</li>
+                <li>Perfiles de usuario personalizados con PIN.</li>
+                <li>Descarga tus favoritos y mira offline.</li>
+                <li>Con garantía.</li>
+            </ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
+            <div class="product-card" data-category="netflix"><img src="images/netflix1.png" alt="Netflix Perfil"><h3>Netflix</h3><p class="duration">1 Mes Perfil</p><p class="initial-description">Perfil privado con PIN.</p><p class="price" data-price-usd="2.50">$2.50</p><ul class="features-list">
+                <li>Perfil privado con PIN personal.</li>
+                <li>Acceso al vasto catálogo de Netflix.</li>
+                <li>Contenido en alta calidad.</li>
+                <li>Descargas disponibles.</li>
+                <li>Con garantía.</li>
+            </ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
+
+            <!-- PRODUCTOS CRUNCHYROLL -->
+            <div class="product-card" data-category="crunchyroll"><img src="images/crunchyroll1.png" alt="Crunchyroll"><h3>Crunchyroll</h3><p class="duration">12 Meses Cuenta Completa</p><p class="initial-description">Todos los perfiles disponibles.</p><p class="price" data-price-usd="8.25">$8.25</p><ul class="features-list">
+                <li>Acceso ilimitado a la biblioteca de anime más grande del mundo.</li>
+                <li>Disfruta de nuevos episodios una hora después de Japón.</li>
+                <li>Experiencia sin anuncios y streaming en alta calidad.</li>
+                <li>Acceso a manga digital y simulcasts exclusivos.</li>
+                <li>Con garantía.</li>
+            </ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
+            <div class="product-card" data-category="crunchyroll"><img src="images/crunchyroll1.png" alt="Crunchyroll Perfil"><h3>Crunchyroll</h3><p class="duration">12 Meses Perfil</p><p class="initial-description">Perfil privado con PIN.</p><p class="price" data-price-usd="4.00">$4.00</p><ul class="features-list">
+                <li>Perfil privado con PIN personal.</li>
+                <li>Acceso al vasto catálogo de anime y manga.</li>
+                <li>Contenido en alta calidad.</li>
+                <li>Descargas disponibles.</li>
+                <li>Con garantía.</li>
+            </ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
+            <div class="product-card" data-category="crunchyroll"><img src="images/crunchyroll1.png" alt="Crunchyroll"><h3>Crunchyroll</h3><p class="duration">6 Meses Cuenta Completa</p><p class="initial-description">Todos los perfiles disponibles.</p><p class="price" data-price-usd="5.75">$5.75</p><ul class="features-list">
+                <li>Acceso ilimitado a la biblioteca de anime más grande del mundo.</li>
+                <li>Disfruta de nuevos episodios una hora después de Japón.</li>
+                <li>Experiencia sin anuncios y streaming en alta calidad.</li>
+                <li>Acceso a manga digital y simulcasts exclusivos.</li>
+                <li>Con garantía.</li>
+            </ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
+            <div class="product-card" data-category="crunchyroll"><img src="images/crunchyroll1.png" alt="Crunchyroll"><h3>Crunchyroll</h3><p class="duration">3 Meses Cuenta Completa</p><p class="initial-description">Todos los perfiles disponibles.</p><p class="price" data-price-usd="3.75">$3.75</p><ul class="features-list">
+                <li>Acceso ilimitado a la biblioteca de anime más grande del mundo.</li>
+                <li>Disfruta de nuevos episodios una hora después de Japón.</li>
+                <li>Experiencia sin anuncios y streaming en alta calidad.</li>
+                <li>Acceso a manga digital y simulcasts exclusivos.</li>
+                <li>Con garantía.</li>
+            </ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
+            <div class="product-card" data-category="crunchyroll"><img src="images/crunchyroll1.png" alt="Crunchyroll"><h3>Crunchyroll</h3><p class="duration">1 Mes Cuenta Completa</p><p class="initial-description">Todos los perfiles disponibles.</p><p class="price" data-price-usd="2.00">$2.00</p><ul class="features-list">
+                <li>Acceso ilimitado a la biblioteca de anime más grande del mundo.</li>
+                <li>Disfruta de nuevos episodios una hora después de Japón.</li>
+                <li>Experiencia sin anuncios y streaming en alta calidad.</li>
+                <li>Acceso a manga digital y simulcasts exclusivos.</li>
+                <li>Con garantía.</li>
+            </ul><div class="product-card-actions"><a href="https://discord.gg/rQu9tuVF" target="_blank" class="add-to-cart-btn" aria-label="Añadir al carrito"><i class="fas fa-shopping-cart"></i></a></div></div>
+
+        </main>
+
+        <footer class="footer">
+            <a href="https://discord.gg/rQu9tuVF" target="_blank" class="footer-icon-link" aria-label="Carrito de Compra">
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+            <a href="https://discord.gg/rQu9tuVF" target="_blank" class="footer-icon-link" aria-label="Servidor de Discord">
+                <i class="fab fa-discord"></i>
+            </a>
+            <!-- NUEVO ENLACE DE TÉRMINOS Y CONDICIONES -->
+            <a href="https://pasteview.com/da9158e" target="_blank" class="footer-text-link" aria-label="Términos y Condiciones y Garantía de Spotify">
+                Términos y Condiciones / Garantía de Spotify
+            </a>
+        </footer>
+    </div> <!-- Fin de .page-content-wrapper -->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const currencySelector = document.getElementById('currency-selector');
+        const productPrices = document.querySelectorAll('.product-card .price');
+        const productCards = document.querySelectorAll('.product-card'); 
+        const filterBtns = document.querySelectorAll('.filter-nav .filter-btn');
+        
+        const minPriceSlider = document.getElementById('min-price-slider');
+        const maxPriceSlider = document.getElementById('max-price-slider');
+        const minPriceValueDisplay = document.getElementById('min-price-value');
+        const maxPriceValueDisplay = document.getElementById('max-price-value');
+        const overallMinPriceDisplay = document.getElementById('overall-min-price-display');
+        const overallMaxPriceDisplay = document.getElementById('overall-max-price-display');
+        const resetPriceBtn = document.getElementById('reset-price-filters');
+
+        const searchInput = document.getElementById('search-input');
+        const clearSearchBtn = document.getElementById('clear-search-btn');
+        const searchSuggestions = document.getElementById('search-suggestions');
+
+        const filterSidebar = document.getElementById('filter-sidebar');
+        const sidebarCloseBtn = document.getElementById('sidebar-close-btn');
+        const sidebarOpenBtn = document.getElementById('sidebar-open-btn'); 
+        const pageContentWrapper = document.getElementById('page-content-wrapper'); 
+
+        const navbar = document.querySelector('.navbar'); 
+        const root = document.documentElement; 
+
+        const suggestionsList = [
+            'Spotify', 'Disney+', 'HBO Max', 'Prime Video', 'Netflix', 'Crunchyroll'
+        ];
+
+        function updateNavbarHeightCssVariable() {
+            const navbarHeight = navbar.offsetHeight; 
+            root.style.setProperty('--navbar-height', `${navbarHeight}px`);
+            
+            if (window.innerWidth <= 768) { 
+                pageContentWrapper.style.marginTop = '0'; 
+                pageContentWrapper.style.minHeight = '100vh'; 
+                filterSidebar.style.top = '0'; 
+                filterSidebar.style.height = '100vh'; 
+            } else { 
+                pageContentWrapper.style.marginTop = `var(--navbar-height)`; 
+                pageContentWrapper.style.minHeight = `calc(100vh - var(--navbar-height))`; 
+                filterSidebar.style.top = `var(--navbar-height)`; 
+                filterSidebar.style.height = `calc(100vh - var(--navbar-height))`; 
+            }
+        }
+
+        let activeFilters = ['all']; 
+        let currentSearchQuery = ''; 
+
+        const allCategories = Array.from(filterBtns)
+                                .map(btn => btn.dataset.filter)
+                                .filter(f => f !== 'all');
+
+        const exchangeRates = { USD: { rate: 1, symbol: '$', code: 'USD', name: 'Dólar USA' }, PEN: { rate: 3.65, symbol: 'S/', code: 'PEN', name: 'Sol Peruano' }, MXN: { rate: 19.24, symbol: 'MXN ', code: 'MXN', name: 'Peso Mexicano' },  ARS: { rate: 1134.36, symbol: 'ARS ', code: 'ARS', name: 'Peso Argentino' },  COP: { rate: 4170.12, symbol: 'COP ', code: 'COP', name: 'Peso Colombiano' },  ECU: { rate: 1, symbol: '$', code: 'USD', name: 'Dólar (Ecuador)' }, VES: { rate: 94.95, symbol: 'Bs.', code: 'VES', name: 'Bolívar Vzlano.' } };
+        const currencyOrder = ['USD', 'PEN', 'MXN', 'ARS', 'COP', 'ECU', 'VES'];
+        currencyOrder.forEach(currencyCode => { if (exchangeRates[currencyCode]) { const option = document.createElement('option'); option.value = currencyCode; let optionText = `${exchangeRates[currencyCode].name} (${exchangeRates[currencyCode].symbol.trim()})`; if (['MXN', 'ARS', 'COP'].includes(currencyCode)) { optionText = `${exchangeRates[currencyCode].name}`;  } option.textContent = optionText; if (currencyCode === 'USD') { option.selected = true; } currencySelector.appendChild(option); } });
+        
+        function formatPrice(price, symbol) {
+            return `${symbol}${parseFloat(price).toFixed(2)}`;
+        }
+
+        function updatePrices() {
+            const selectedCurrency = currencySelector.value;
+            if (!exchangeRates[selectedCurrency]) return;
+            const targetRate = exchangeRates[selectedCurrency].rate;
+            const targetSymbol = exchangeRates[selectedCurrency].symbol;
+
+            productPrices.forEach(priceElement => {
+                const priceUSDString = priceElement.getAttribute('data-price-usd');
+                if (priceUSDString) {
+                    const priceUSD = parseFloat(priceUSDString);
+                    if (!isNaN(priceUSD)) {
+                        let convertedPrice = priceUSD * targetRate;
+                        let formattedPrice;
+                        if (selectedCurrency === 'USD' && priceUSD.toFixed(2) === '5.25') {
+                            formattedPrice = priceUSD.toFixed(2);
+                        } else {
+                            convertedPrice = Math.floor(convertedPrice * 10) / 10;
+                            formattedPrice = convertedPrice.toFixed(2);
+                        }
+                        priceElement.textContent = `${targetSymbol}${formattedPrice}`;
+                    }
+                }
+            });
+            updatePriceFilterUI(); 
+        }
+
+        function updatePriceFilterUI() {
+            const selectedCurrency = currencySelector.value;
+            const currentExchangeRate = exchangeRates[selectedCurrency] || exchangeRates['USD'];
+            const rate = currentExchangeRate.rate;
+            const symbol = currentExchangeRate.symbol;
+
+            const minValUSD = parseFloat(minPriceSlider.value);
+            const maxValUSD = parseFloat(maxPriceSlider.value);
+
+            minPriceValueDisplay.textContent = formatPrice(minValUSD * rate, symbol);
+            maxPriceValueDisplay.textContent = formatPrice(maxValUSD * rate, symbol);
+
+            overallMinPriceDisplay.textContent = formatPrice(minValUSD * rate, symbol);
+            overallMaxPriceDisplay.textContent = formatPrice(maxValUSD * rate, symbol);
+        }
+
+        function resetPriceFilters() {
+            minPriceSlider.value = minPriceSlider.min; 
+            maxPriceSlider.value = maxPriceSlider.max; 
+            updatePriceFilterUI(); 
+        }
+
+        function applyFilters() {
+            const currentMinPriceUSD = parseFloat(minPriceSlider.value);
+            const currentMaxPriceUSD = parseFloat(maxPriceSlider.value);
+            const searchLower = currentSearchQuery.toLowerCase(); 
+
+            productCards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+                const cardPriceUSD = parseFloat(card.querySelector('.price').getAttribute('data-price-usd'));
+                const cardTitle = card.querySelector('h3').textContent.toLowerCase(); 
+                const cardDuration = card.querySelector('.duration').textContent.toLowerCase();
+
+                const isCategoryMatch = activeFilters.includes('all') || activeFilters.includes(cardCategory);
+                const isPriceMatch = (cardPriceUSD >= currentMinPriceUSD && cardPriceUSD <= currentMaxPriceUSD);
+                const isSearchMatch = (searchLower === '' || 
+                                       cardTitle.includes(searchLower) ||
+                                       cardDuration.includes(searchLower) ||
+                                       cardCategory.includes(searchLower));
+
+                if (isCategoryMatch && isPriceMatch && isSearchMatch) { 
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function updateFilterButtonsUI() {
+            filterBtns.forEach(btn => {
+                const filterValue = btn.dataset.filter;
+                if (activeFilters.includes(filterValue)) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const clickedFilter = this.dataset.filter;
+                if (clickedFilter === 'all') {
+                    activeFilters = ['all'];
+                } else {
+                    const allIndex = activeFilters.indexOf('all');
+                    if (allIndex > -1) { activeFilters.splice(allIndex, 1); }
+                    const filterIndex = activeFilters.indexOf(clickedFilter);
+                    if (filterIndex > -1) { activeFilters.splice(filterIndex, 1); } 
+                    else { activeFilters.push(clickedFilter); }
+                    if (activeFilters.length === 0) { activeFilters = ['all']; }
+                    else if (activeFilters.length === allCategories.length && !activeFilters.includes('all')) {
+                         activeFilters = ['all'];
+                    }
+                }
+                updateFilterButtonsUI();
+                applyFilters(); 
+            });
+        });
+
+        searchInput.addEventListener('input', function() {
+            currentSearchQuery = this.value.trim(); 
+            applyFilters(); 
+            toggleClearSearchButton();
+            showSuggestions();
+        });
+
+        searchInput.addEventListener('focus', function() {
+            showSuggestions();
+        });
+
+        searchInput.addEventListener('blur', function() {
+            setTimeout(() => {
+                searchSuggestions.innerHTML = '';
+                searchSuggestions.style.display = 'none';
+            }, 150); 
+        });
+
+        clearSearchBtn.addEventListener('click', function() {
+            searchInput.value = '';
+            currentSearchQuery = '';
+            applyFilters();
+            toggleClearSearchButton();
+            searchSuggestions.innerHTML = '';
+            searchSuggestions.style.display = 'none';
+            searchInput.focus(); 
+        });
+
+        function toggleClearSearchButton() {
+            if (searchInput.value.length > 0) {
+                clearSearchBtn.style.display = 'flex'; 
+            } else {
+                clearSearchBtn.style.display = 'none';
+            }
+        }
+
+        function showSuggestions() {
+            const query = searchInput.value.toLowerCase();
+            searchSuggestions.innerHTML = ''; 
+            searchSuggestions.style.display = 'none'; 
+
+            if (query.length === 0) {
+                return;
+            }
+
+            const filteredSuggestions = suggestionsList.filter(suggestion => 
+                suggestion.toLowerCase().includes(query)
+            );
+
+            if (filteredSuggestions.length > 0) {
+                filteredSuggestions.forEach(suggestion => {
+                    const suggestionItem = document.createElement('div');
+                    suggestionItem.classList.add('suggestion-item');
+                    
+                    const icon = document.createElement('i');
+                    icon.classList.add('fas', 'fa-search'); 
+                    
+                    const textSpan = document.createElement('span');
+                    textSpan.textContent = suggestion;
+
+                    suggestionItem.appendChild(icon);
+                    suggestionItem.appendChild(textSpan);
+
+                    suggestionItem.addEventListener('mousedown', function(event) { 
+                        event.preventDefault(); 
+                        searchInput.value = suggestion;
+                        currentSearchQuery = suggestion.toLowerCase();
+                        applyFilters();
+                        searchSuggestions.innerHTML = '';
+                        searchSuggestions.style.display = 'none';
+                        toggleClearSearchButton(); 
+                    });
+                    searchSuggestions.appendChild(suggestionItem);
+                });
+                searchSuggestions.style.display = 'block'; 
+            }
+        }
+
+        minPriceSlider.addEventListener('input', function() {
+            if (parseFloat(minPriceSlider.value) > parseFloat(maxPriceSlider.value)) {
+                maxPriceSlider.value = minPriceSlider.value;
+            }
+            updatePriceFilterUI();
+            applyFilters();
+        });
+
+        maxPriceSlider.addEventListener('input', function() {
+            if (parseFloat(maxPriceSlider.value) < parseFloat(minPriceSlider.value)) {
+                minPriceSlider.value = maxPriceSlider.value;
+            }
+            updatePriceFilterUI();
+            applyFilters();
+        });
+
+        resetPriceBtn.addEventListener('click', function() {
+            resetPriceFilters(); 
+            applyFilters();      
+        });
+
+        function toggleSidebar(open) {
+            if (open) {
+                filterSidebar.classList.add('open');
+                pageContentWrapper.classList.add('shifted'); 
+                if(sidebarCloseBtn) sidebarCloseBtn.style.display = 'flex'; 
+                // Ocultar el botón de abrir la sidebar cuando la sidebar está abierta
+                if (sidebarOpenBtn) sidebarOpenBtn.style.display = 'none';
+                localStorage.setItem('sidebarState', 'open');
+            } else {
+                filterSidebar.classList.remove('open');
+                pageContentWrapper.classList.remove('shifted'); 
+                if(sidebarCloseBtn) sidebarCloseBtn.style.display = 'none'; 
+                // Mostrar el botón de abrir la sidebar cuando la sidebar está cerrada
+                if (sidebarOpenBtn) sidebarOpenBtn.style.display = 'flex';
+                localStorage.setItem('sidebarState', 'closed');
+            }
+        }
+
+        if (sidebarOpenBtn) {
+            sidebarOpenBtn.addEventListener('click', () => toggleSidebar(true));
+        }
+        if (sidebarCloseBtn) {
+            sidebarCloseBtn.addEventListener('click', () => toggleSidebar(false));
+        }
+        
+        updateNavbarHeightCssVariable(); 
+        window.addEventListener('resize', updateNavbarHeightCssVariable); 
+
+        // Lógica de apertura de la sidebar al cargar la página:
+        // La sidebar siempre empieza CERRADA, y se abre si el estado guardado es 'open'.
+        // El botón de abrir SIEMPRE es visible para que el usuario pueda abrirla.
+        const savedSidebarState = localStorage.getItem('sidebarState');
+        if (savedSidebarState === 'open') {
+            toggleSidebar(true);
+        } else {
+            toggleSidebar(false); // Asegura que el botón de abrir esté visible si la sidebar está cerrada
+        }
+
+        if (currencySelector) {  currencySelector.addEventListener('change', updatePrices); updatePrices();  } 
+        
+        resetPriceFilters(); 
+        updateFilterButtonsUI();
+        applyFilters(); 
+        toggleClearSearchButton(); 
+
+        let activeCard = null;
+        productCards.forEach(card => { card.addEventListener('click', function(event) { if (activeCard && activeCard !== this) { activeCard.classList.remove('product-card--active'); } this.classList.add('product-card--active'); activeCard = this; event.stopPropagation(); }); });
+        document.body.addEventListener('click', function(event) { if (!event.target.closest('.product-card') && activeCard) { activeCard.classList.remove('product-card--active'); activeCard = null; } });
+    });
+</script>
+</body>
+</html>
