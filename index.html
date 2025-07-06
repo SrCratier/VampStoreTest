@@ -329,9 +329,9 @@
                                 .map(btn => btn.dataset.filter)
                                 .filter(f => f !== 'all');
 
-        const exchangeRates = { USD: { rate: 1, symbol: '$', code: 'USD', name: 'Dólar USA' }, PEN: { rate: 3.65, symbol: 'S/', code: 'PEN', name: 'Sol Peruano' }, MXN: { rate: 19.24, symbol: 'MXN ', code: 'MXN', name: 'Peso Mexicano' },  ARS: { rate: 1134.36, symbol: 'ARS ', code: 'ARS', name: 'Peso Argentino' },  COP: { rate: 4170.12, symbol: 'COP ', code: 'COP', name: 'Peso Colombiano' },  ECU: { rate: 1, symbol: '$', code: 'USD', name: 'Dólar (Ecuador)' }, VES: { rate: 94.95, symbol: 'Bs.', code: 'VES', name: 'Bolívar Vzlano.' } };
-        const currencyOrder = ['USD', 'PEN', 'MXN', 'ARS', 'COP', 'ECU', 'VES'];
-        currencyOrder.forEach(currencyCode => { if (exchangeRates[currencyCode]) { const option = document.createElement('option'); option.value = currencyCode; let optionText = `${exchangeRates[currencyCode].name} (${exchangeRates[currencyCode].symbol.trim()})`; if (['MXN', 'ARS', 'COP'].includes(currencyCode)) { optionText = `${exchangeRates[currencyCode].name}`;  } option.textContent = optionText; if (currencyCode === 'USD') { option.selected = true; } currencySelector.appendChild(option); } });
+        const exchangeRates = { USD: { rate: 1, symbol: '$', code: 'USD', name: 'Dólar USA' }, PEN: { rate: 3.65, symbol: 'S/', code: 'PEN', name: 'Sol Peruano' }, Mx: { rate: 19.24, symbol: 'Mx ', code: 'Mx', name: 'Peso Mexicano' },  ARS: { rate: 1134.36, symbol: 'ARS ', code: 'ARS', name: 'Peso Argentino' },  COP: { rate: 4170.12, symbol: 'COP ', code: 'COP', name: 'Peso Colombiano' },  ECU: { rate: 1, symbol: '$', code: 'USD', name: 'Dólar (Ecuador)' }, VES: { rate: 94.95, symbol: 'Bs.', code: 'VES', name: 'Bolívar Vzlano.' } };
+        const currencyOrder = ['USD', 'PEN', 'Mx', 'ARS', 'COP', 'ECU', 'VES'];
+        currencyOrder.forEach(currencyCode => { if (exchangeRates[currencyCode]) { const option = document.createElement('option'); option.value = currencyCode; let optionText = `${exchangeRates[currencyCode].name} (${exchangeRates[currencyCode].symbol.trim()})`; if (['Mx', 'ARS', 'COP'].includes(currencyCode)) { optionText = `${exchangeRates[currencyCode].name}`;  } option.textContent = optionText; if (currencyCode === 'USD') { option.selected = true; } currencySelector.appendChild(option); } });
         
         function formatPrice(price, symbol) {
             return `${symbol}${parseFloat(price).toFixed(2)}`;
