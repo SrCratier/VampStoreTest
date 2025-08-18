@@ -1,5 +1,4 @@
-# CÓDIGO CREADO POR @SrCratier (Nvx) o simplemente Cratier. Este es un proyecto personal PROTEGIDO por derechos de autor.
-# DOCUMENTACIÓN
+# CÓDIGO CREADO POR @SrCratier (Nvx) o simplemente Cratier.
 
 1. Estructura del Documento (HTML - index.html)
 El archivo index.html define la estructura fundamental de la página web y organiza el contenido visible.
